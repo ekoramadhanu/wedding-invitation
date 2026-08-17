@@ -31,7 +31,7 @@ const LandingPage = forwardRef<LandingPageRef>(
       // MUSIC
       // =========================
       const audio = new Audio(
-        "/music/cant-help-falling-in-love.mp3"
+        "/music/Glenn_Madeiro_-_Nothing_s_Gonna_Change_My_Love_For_You_(mp3.pm).mp3"
       );
 
       audio.loop = true;
