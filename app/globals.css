@@ -1,26 +1,35 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "Viaoda Libre";
+  src: url("/fonts/ViaodaLibre-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rouge Script";
+  src: url("/fonts/RougeScript-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+@theme {
+  --font-viaoda-libre: "Viaoda Libre", serif;
+  --font-rogue-script: "Rouge Script", cursive;
+  --color-dark-brown: #583e29;
+  --color-muted-brown: #826e5f;
+  --color-olive-gray: #666765;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes frame-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
