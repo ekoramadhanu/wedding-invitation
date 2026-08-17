@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import WeddingCover from "./_components/WeddingCover";
@@ -8,7 +8,7 @@ import LandingPage, {
   LandingPageRef,
 } from "./_components/LandingPage";
 
-export default function Page() {
+function WeddingPage() {
   const searchParams = useSearchParams();
 
   const invitation =
@@ -20,13 +20,18 @@ export default function Page() {
   const isGuardActive = useRef(false);
 
   const handleOpenInvitation = async () => {
-     console.log("1. BUTTON CLICKED");
+    console.log("1. BUTTON CLICKED");
+
     await landingPageRef.current?.playMusic();
+
+    console.log("2. PLAY MUSIC DONE");
+
     setIsOpen(true);
+
+    console.log("3. IS OPEN SET");
 
     isGuardActive.current = true;
 
-    // HANYA SATU KALI
     window.history.pushState(
       {
         weddingInvitation: true,
@@ -34,6 +39,8 @@ export default function Page() {
       "",
       window.location.href
     );
+
+    console.log("4. HISTORY PUSHED");
   };
 
   useEffect(() => {
@@ -42,8 +49,6 @@ export default function Page() {
     const handlePopState = () => {
       if (!isGuardActive.current) return;
 
-      // Browser sudah mundur satu history entry.
-      // Kembalikan ke LandingPage.
       window.history.go(1);
     };
 
@@ -55,7 +60,7 @@ export default function Page() {
   }, [isOpen]);
 
   return (
-   <>
+    <>
       <div className={isOpen ? "hidden" : "block"}>
         <WeddingCover
           invitation={invitation}
@@ -64,8 +69,16 @@ export default function Page() {
       </div>
 
       <div className={isOpen ? "block" : "hidden"}>
-        <LandingPage ref={landingPageRef}/>
+        <LandingPage ref={landingPageRef} />
       </div>
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <WeddingPage />
+    </Suspense>
   );
 }
