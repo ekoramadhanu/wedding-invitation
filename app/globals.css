@@ -13,13 +13,22 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Noto Naskh Arabic";
+  src: url("/fonts/NotoNaskhArabic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 @theme {
   --font-viaoda-libre: "Viaoda Libre", serif;
   --font-rogue-script: "Rouge Script", cursive;
+  --font-noto-naskah-arabic: "Noto Naskh Arabic", serif;
   --color-dark-brown: #583e29;
   --color-muted-brown: #826e5f;
   --color-olive-gray: #666765;
+  --color-light-gray: #F3F3F3;
 }
 
 @keyframes frame-appear {
@@ -32,4 +41,40 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  25% {
+    transform: translate3d(20px, 25vh, 0);
+  }
+
+  50% {
+    transform: translate3d(-15px, 50vh, 0);
+  }
+
+  75% {
+    transform: translate3d(25px, 75vh, 0);
+  }
+
+  100% {
+    transform: translate3d(-10px, 110vh, 0);
+  }
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  border-radius: 9999px;
+  /* background: #8B7568; */
+  background: #fff;
+
+  animation-name: snowfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  will-change: transform;
 }

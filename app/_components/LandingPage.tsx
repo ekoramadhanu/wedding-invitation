@@ -1,5 +1,6 @@
 "use client";
-
+import OverviewSection from "./OverviewSection";
+import WeddingCouple from "./WeddingCouple";
 import { Pause, Play } from "lucide-react";
 import {
   forwardRef,
@@ -7,6 +8,7 @@ import {
   useImperativeHandle,
   useRef,
   useState,
+  useMemo,
 } from "react";
 
 export type LandingPageRef = {
@@ -20,18 +22,38 @@ const LandingPage = forwardRef<LandingPageRef>(
     const [isPlaying, setIsPlaying] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [timeLeft, setTimeLeft] = useState({
-        hari: '00',
-        jam: '00',
-        menit: '00',
-        detik: '00'
+      hari: "00",
+      jam: "00",
+      menit: "00",
+      detik: "00",
     });
+    const snowflakes = useMemo(() => {
+      return Array.from({ length: 35 }, (_, index) => ({
+        id: index,
+        // Posisi kiri
+        left: (index * 37) % 100,
+        // Delay berbeda-beda
+        delay: (index * 1.7) % 8,
+        // Kecepatan berbeda-beda
+        duration: 7 + ((index * 2.3) % 6),
+        // Ukuran berbeda-beda
+        size: 7 + ((index * 1.3) % 4),
+        // Opacity berbeda-beda
+        opacity: 0.25 + ((index * 0.17) % 0.45),
+      }));
+    }, []);
+    const [currentBackground, setCurrentBackground] = useState(0);
+    const backgrounds = ["/DSC_0704.jpg", "/DSC_0708.jpg", "/IMG_9650.JPG"];
+    const overviewRef = useRef<HTMLElement>(null);
+    const weddingCoupleRef = useRef<HTMLElement>(null);
+    const eventDetailRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
       // =========================
       // MUSIC
       // =========================
       const audio = new Audio(
-        "/music/Glenn_Madeiro_-_Nothing_s_Gonna_Change_My_Love_For_You_(mp3.pm).mp3"
+        "/music/Glenn_Madeiro_-_Nothing_s_Gonna_Change_My_Love_For_You_(mp3.pm).mp3",
       );
 
       audio.loop = true;
@@ -42,9 +64,7 @@ const LandingPage = forwardRef<LandingPageRef>(
       // =========================
       // COUNTDOWN
       // =========================
-      const targetDate = new Date(
-        "November 21, 2026 00:00:00"
-      ).getTime();
+      const targetDate = new Date("November 21, 2026 00:00:00").getTime();
 
       const calculateTime = () => {
         const now = new Date().getTime();
@@ -61,23 +81,15 @@ const LandingPage = forwardRef<LandingPageRef>(
           return;
         }
 
-        const d = Math.floor(
-          difference / (1000 * 60 * 60 * 24)
-        );
+        const d = Math.floor(difference / (1000 * 60 * 60 * 24));
 
         const h = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) /
-            (1000 * 60 * 60)
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
         );
 
-        const m = Math.floor(
-          (difference % (1000 * 60 * 60)) /
-            (1000 * 60)
-        );
+        const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
 
-        const s = Math.floor(
-          (difference % (1000 * 60)) / 1000
-        );
+        const s = Math.floor((difference % (1000 * 60)) / 1000);
 
         setTimeLeft({
           hari: d.toString().padStart(2, "0"),
@@ -94,10 +106,18 @@ const LandingPage = forwardRef<LandingPageRef>(
       const timer = setInterval(calculateTime, 1000);
 
       // =========================
+      // BACKGROUND SLIDESHOW
+      // =========================
+      const backgroundTimer = setInterval(() => {
+        setCurrentBackground((prev) => (prev + 1) % backgrounds.length);
+      }, 6000);
+
+      // =========================
       // CLEANUP
       // =========================
       return () => {
         clearInterval(timer);
+        clearInterval(backgroundTimer);
 
         audio.pause();
         audio.src = "";
@@ -143,196 +163,53 @@ const LandingPage = forwardRef<LandingPageRef>(
     };
 
     return (
-      <div >
-        <div className="relative flex min-h-screen w-full items-center justify-center bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat px-4">
+      <div>
+        <OverviewSection
+          overviewRef={overviewRef}
+          snowflakes={snowflakes}
+          backgrounds={backgrounds}
+          currentBackground={currentBackground}
+          timeLeft={timeLeft}
+        />
+        <WeddingCouple weddingCoupleRef={weddingCoupleRef} />
 
-            {/* FRAME CONTAINER */}
-            <div className="relative aspect-[630/555] w-full max-w-[630px]">
-
-            {/* FRAME */}
-            <div
-                className="
-                absolute
-                inset-0
-                z-10
-                bg-[url('/cover-frame.png')]
-                bg-contain
-                bg-center
-                bg-no-repeat
-                pointer-events-none
-                "
-            />
-
-            {/* FLOWER KIRI ATAS */}
-            <div
-                className="
-                absolute
-                left-[-5%]
-                top-[-8%]
-                z-20
-                aspect-[279/443]
-                w-[55%]
-                bg-[url('/cover-flower.png')]
-                bg-contain
-                bg-left-top
-                bg-no-repeat
-                pointer-events-none
-                "
-            />
+        <section
+          ref={eventDetailRef}
+          className="bg-light-gray relative flex min-h-screen w-full flex-col items-center justify-start bg-[url('/paper.png')] bg-cover bg-center px-4 pt-2 md:pt-4"
+        >
+          {/* KONTAINER UTAMA */}
+          <div className="relative flex w-full max-w-[900px] flex-col items-center pt-10">
+            {/* BACKGROUND BINGKAI BUNGA (Diturunkan posisi top-nya) */}
+            <div className="pointer-events-none absolute top-[250px] left-0 hidden h-[800px] w-full bg-[url('/event-bg.png')] bg-contain bg-top bg-no-repeat md:block" />
 
             {/* CONTENT */}
-            <div
-                className="
-                absolute
-                inset-0
-                z-20
-                flex
-                flex-col
-                items-center
-                justify-center
-                px-[25%]
-                "
-            >
+            <div className="relative z-10 flex w-full flex-col items-center">
+              {/* JUDUL (Nempel ke paling atas) */}
+              <p className="font-rogue-script text-muted-brown text-center text-6xl font-light md:text-6xl">
+                Detail Acara
+              </p>
 
-                <p className="mb-4 text-center font-viaoda-libre text-xs font-thin text-dark-brown sm:mb-4 sm:text-lg md:text-2xl">
-                We are getting married
-                </p>
-
-                <p className="mb-4 px-2 text-center font-rogue-script text-4xl font-light text-dark-brown sm:text-5xl md:text-6xl">
-                Eko & Susan
-                </p>
-
-                <p className="text-center font-viaoda-libre text-sm font-normal text-dark-brown sm:text-lg md:text-2xl">
-                Sabtu, 21 November 2026
-                </p>
-                <p className="text-center font-viaoda-libre text-xs font-thin text-dark-brown sm:text-sm md:text-lg">
-                - Save the Date -
-                </p>
-                {/* Tampilan Countdown */}
-                <div className="mb-2 mt-11 grid w-full max-w-[360px] grid-cols-4 gap-2 sm:max-w-[420px] sm:gap-4">
-                  {/* HARI */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex aspect-square w-full items-center justify-center rounded-md border border-muted-brown/30 bg-white/50">
-                      <span className="font-viaoda-libre text-2xl font-bold text-muted-brown sm:text-3xl">
-                        {timeLeft.hari}
-                      </span>
-                    </div>
-
-                    <span className="mt-1 text-[9px] tracking-wider text-muted-brown font-semibold font-viaoda-libre sm:text-[10px]">
-                      Hari
-                    </span>
-                  </div>
-
-                  {/* JAM */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex aspect-square w-full items-center justify-center rounded-md border border-muted-brown/30 bg-white/50">
-                      <span className="font-viaoda-libre text-2xl font-bold text-muted-brown sm:text-3xl">
-                        {timeLeft.jam}
-                      </span>
-                    </div>
-
-                    <span className="mt-1 text-[9px] tracking-wider text-muted-brown font-semibold font-viaoda-libre sm:text-[10px]">
-                      Jam
-                    </span>
-                  </div>
-
-                  {/* MENIT */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex aspect-square w-full items-center justify-center rounded-md border border-muted-brown/30 bg-white/50">
-                      <span className="font-viaoda-libre text-2xl font-bold text-muted-brown sm:text-3xl">
-                        {timeLeft.menit}
-                      </span>
-                    </div>
-
-                    <span className="mt-1 text-[9px] tracking-wider text-muted-brown font-semibold font-viaoda-libre sm:text-[10px]">
-                      Menit
-                    </span>
-                  </div>
-
-                  {/* DETIK */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex aspect-square w-full items-center justify-center rounded-md border border-muted-brown/30 bg-white/50">
-                      <span className="font-viaoda-libre text-2xl font-bold text-muted-brown sm:text-3xl">
-                        {timeLeft.detik}
-                      </span>
-                    </div>
-
-                    <span className="mt-1 text-[9px] tracking-wider text-muted-brown font-semibold font-viaoda-libre sm:text-[10px]">
-                      Detik
-                    </span>
-                  </div>
-                </div>
-                <p className="text-center font-rogue-script text-xs font-thin text-dark-brown sm:text-lg md:text-2xl">
-                - E & S -
-                </p>
-                
-
-               
-
-
-
+              {/* Diberi margin-top agar heksagon turun mengikuti bunga */}
+              
             </div>
-
-            {/* FLOWER KANAN BAWAH */}
-            <div
-                className="
-                absolute
-                bottom-[-14%]
-                right-[-5%]
-                z-20
-                aspect-[279/443]
-                w-[55%]
-                bg-[url('/cover-flower-2.png')]
-                bg-contain
-                bg-right-bottom
-                bg-no-repeat
-                pointer-events-none
-                "
-            />
-
-            </div>
-        </div>
-        Mempelai
+          </div>
+        </section>
 
         <button
           type="button"
           onClick={toggleMusic}
           aria-label={isPlaying ? "Pause music" : "Play music"}
-          className="
-            fixed
-            bottom-5
-            right-5
-            z-50
-            flex
-            h-12
-            w-12
-            items-center
-            justify-center
-            rounded-full
-            bg-olive-gray
-            text-white
-            shadow-lg
-            transition
-            hover:scale-105
-            active:scale-95
-          "
+          className="bg-olive-gray fixed right-5 bottom-5 z-50 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition hover:scale-105 active:scale-95"
         >
           {isPlaying ? (
-            <Pause
-              size={20}
-              className="fill-white text-white"
-            />
+            <Pause size={20} className="fill-white text-white" />
           ) : (
-            <Play
-              size={20}
-              className="fill-white text-white"
-            />
+            <Play size={20} className="fill-white text-white" />
           )}
         </button>
-
       </div>
     );
-  }
+  },
 );
 
 export default LandingPage;

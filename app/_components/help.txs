@@ -1,0 +1,130 @@
+            <div
+              className="
+                absolute
+                inset-0
+                z-20
+                flex
+                align-center
+                justify-start
+                pt-8 md:pt-14 
+              "
+            >
+              <div className="flex flex-col w-full">
+                <p className=" text-center font-rogue-script text-4xl md:text-6xl font-light text-muted-brown text-center">
+                  Detail Acara
+                </p>
+                <div className="grid grid-cols-12 mt-6 sm:gap-18">
+                  {/* PRIA */}
+                  <div className="col-span-12 sm:col-span-6 flex items-center justify-center">
+                    <div className="flex flex-col"> 
+                      <div className="relative w-[260px] h-[280px] md:w-[300px] md:h-[320px] flex items-center justify-center">
+                        
+                        {/* 2. HEKSAGON BELAKANG (Pointy-Topped */}
+                        <div
+                          className="
+                            absolute
+                            w-[200px] h-[231px]
+                            md:w-[230px] md:h-[265px]
+                            bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF]
+                            [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)]
+                            z-0
+                          "
+                        >
+                          <div
+                            className="
+                              absolute inset-[1.5px]
+                              bg-[#F9F8F6] 
+                              [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)]
+                            "
+                          />
+                        </div>
+
+                        {/* 3. HEKSAGON DEPAN (Flat-Topped */}
+                        <div
+                          className="
+                            absolute
+                            w-[230px] h-[199px] 
+                            md:w-[260px] md:h-[225px]
+                            bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF]
+                            [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]
+                            z-10
+                          "
+                        >
+                          <div
+                            className="
+                              absolute inset-[2px]
+                              [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]
+                              overflow-hidden
+                            "
+                          >
+                            
+                          </div>
+                        </div>
+
+                        
+
+                      </div>
+                      
+                    </div>
+                  </div>
+
+                  {/* WANITA */}
+                  <div className="col-span-12 sm:col-span-6 flex items-center justify-center">
+                    <div className="flex flex-col">
+                      <div className="relative w-[260px] h-[280px] md:w-[300px] md:h-[320px] flex items-center justify-center">
+
+                        
+                        {/* 1. HEKSAGON BELAKANG (Pointy-Topped */}
+                        <div
+                          className="
+                            absolute
+                            w-[200px] h-[231px]
+                            md:w-[230px] md:h-[265px]
+                            bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF]
+                            [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)]
+                            z-0
+                          "
+                        >
+                          <div
+                            className="
+                              absolute inset-[1.5px]
+                              bg-[#F9F8F6] 
+                              [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)]
+                            "
+                          />
+                        </div>
+
+                        {/* 2. HEKSAGON DEPAN (Flat-Topped */}
+                        <div
+                          className="
+                            absolute
+                            w-[230px] h-[199px] 
+                            md:w-[260px] md:h-[225px]
+                            bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF]
+                            [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]
+                            z-10
+                          "
+                        >
+                          <div
+                            className="
+                              absolute inset-[2px]
+                              [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]
+                              overflow-hidden
+                            "
+                          >
+                            
+                          </div>
+                        </div>
+
+                        
+
+                      </div>
+
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
