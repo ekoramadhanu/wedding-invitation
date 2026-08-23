@@ -46,7 +46,7 @@ export default function WeddingCouple({ eventDetailRef }: WeddingCoupleProps) {
                 <div className="relative z-10 flex h-[90%] w-[90%] items-center justify-center bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
                   <div className="absolute inset-[1.5px] flex flex-col items-center justify-start bg-[#F9F8F6] p-4 text-center [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
                     {/* ISIAN KONTEN AKAD */}
-                    <h3 className="font-rogue-script text-dark-brown mt-4 text-3xl lg:text-5xl">
+                    <h3 className="font-rogue-script text-dark-brown mt-2 text-3xl lg:text-5xl">
                       Akad Nikah
                     </h3>
                     <div className="bg-dark-brown my-1 h-[1px] w-12" />
@@ -108,7 +108,7 @@ export default function WeddingCouple({ eventDetailRef }: WeddingCoupleProps) {
                 <div className="relative z-10 flex h-[90%] w-[90%] items-center justify-center bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
                   <div className="absolute inset-[1.5px] flex flex-col items-center justify-start bg-[#F9F8F6] p-4 text-center [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
                     {/* ISIAN KONTEN AKAD */}
-                    <h3 className="font-rogue-script text-dark-brown mt-4 text-3xl lg:text-5xl">
+                    <h3 className="font-rogue-script text-dark-brown mt-2 text-3xl lg:text-5xl">
                       Resepsi
                     </h3>
                     <div className="bg-dark-brown my-1 h-[1px] w-12" />
