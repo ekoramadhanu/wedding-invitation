@@ -9,37 +9,45 @@ interface StoryItem {
   id: number;
   title: string;
   date: string;
+  sub: string;
   description: string;
 }
 
-const initialStories: StoryItem[] = [
-  {
-    id: 1,
-    title: "Kenalan",
-    date: "Kampus, 2019",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: 2,
-    title: "Komitmen",
-    date: "Oktober, 2019",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: 3,
-    title: "Lamaran",
-    date: "Maret, 2020",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: 4,
-    title: "Menikah",
-    date: "Agustus, 2020",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-];
-
 export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
+  const initialStories: StoryItem[] = [
+    {
+      id: 1,
+      title: "Kenalan",
+      date: "Januari, 2025",
+      sub: "Awal dari Sebuah Pertemuan",
+      description:
+        "Semua berawal dari sebuah perkenalan sederhana. Di tahap ini, kami mulai mengenal satu sama lain, memahami karakter, kebiasaan, serta cara masing-masing dalam menjalani kehidupan. Perlahan, dari setiap percakapan dan pertemuan, kami mulai mengenal lebih jauh dan bertanya dalam hati, “Apakah dia adalah seseorang yang tepat untuk melangkah bersama?”",
+    },
+    {
+      id: 2,
+      title: "Komitmen",
+      date: "September, 2025",
+      sub: "Mengenal Lebih Dalam",
+      description:
+        "Setelah saling mengenal, kami mulai melangkah ke tahap yang lebih serius. Bukan hanya mengenal satu sama lain, tetapi juga mulai mengenal keluarga masing-masing. Pertemuan dengan keluarga menjadi bagian penting dalam perjalanan kami. Dari sana, kami belajar bahwa sebuah hubungan bukan hanya tentang dua orang, tetapi juga tentang dua keluarga yang nantinya akan berjalan bersama.",
+    },
+    {
+      id: 3,
+      title: "Lamaran",
+      date: "Januari, 2026",
+      sub: "Menuju Satu Tujuan",
+      description:
+        "Setelah melewati berbagai proses dan perjalanan bersama, dengan segala pertimbangan serta doa yang telah dipanjatkan, akhirnya kami memutuskan untuk melangkah ke tahap berikutnya. Dengan restu dari kedua orang tua dan petunjuk dari Allah SWT, kami mengikat niat untuk membawa hubungan ini menuju sebuah ikatan yang lebih serius melalui prosesi lamaran.",
+    },
+    {
+      id: 4,
+      title: "Menikah",
+      date: "November, 2026",
+      sub: "Menuju Hari Bahagia",
+      description:
+        "Setelah perjalanan panjang yang telah kami lalui, InsyaAllah kami akan melanjutkan langkah ini menuju sebuah ikatan suci dalam pernikahan. Melalui hasil perundingan dan kesepakatan kedua belah pihak keluarga, InsyaAllah pernikahan kami akan dilangsungkan pada November 2026. Semoga langkah yang kami mulai ini menjadi awal dari perjalanan panjang untuk membangun keluarga yang penuh cinta, keberkahan, dan ridha Allah SWT.",
+    },
+  ];
   const sliderRef = useRef<HTMLDivElement>(null);
   const [stories, setStories] = useState<StoryItem[]>(initialStories);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -48,9 +56,9 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
+      if (window.innerWidth < 860) {
         setVisibleCount(1); // HP: 1 kartu
-      } else if (window.innerWidth < 1024) {
+      } else if (window.innerWidth <= 1024) {
         setVisibleCount(2); // Tablet: 2 kartu
       } else {
         setVisibleCount(3); // Desktop: 3 kartu
@@ -91,7 +99,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
       ref={ourLoveStoryRef}
       className="flex min-h-screen w-full flex-col items-center justify-center bg-[url('/paper.png')] py-12"
     >
-      <div className="flex w-full max-w-[1100px] flex-1 flex-col items-center justify-center px-4">
+      <div className="flex w-full max-w-[1200px] flex-1 flex-col items-center justify-center px-4">
         {/* Judul Utama */}
         <h2 className="font-rogue-script text-muted-brown text-center text-5xl font-light sm:text-6xl">
           Our Love Story
@@ -99,7 +107,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
 
         {/* Area Konten Utama */}
         <div className="mt-8 flex w-full flex-col items-center justify-center gap-6">
-          <div className="relative flex w-full items-center justify-between px-2 sm:px-4">
+          <div className="relative flex w-full items-center justify-between px-2">
             {/* Tombol Kiri */}
             <button
               type="button"
@@ -110,7 +118,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
             </button>
 
             {/* Pembungkus Slider Responsif */}
-            <div className="mx-auto flex w-full max-w-[310px] items-center justify-center overflow-hidden py-8 sm:max-w-[620px] lg:max-w-[950px]">
+            <div className="mx-auto flex w-full max-w-[310px] items-center justify-center overflow-hidden py-8 sm:max-w-[620px] lg:max-w-[1100px]">
               <div
                 ref={sliderRef}
                 className="flex items-center justify-center gap-4 sm:gap-6"
@@ -118,28 +126,31 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
                 {stories.slice(0, visibleCount).map((item, index) => (
                   <div
                     key={`story-card-${item.id}-${index}`}
-                    className="relative flex h-[400px] w-[260px] flex-none shrink-0 flex-col items-center justify-start rounded-tl-[45px] rounded-tr-[15px] rounded-br-[45px] rounded-bl-[15px] border border-[#d2a37e] bg-white/40 p-6 pt-12 text-center shadow-sm backdrop-blur-sm transition-all duration-500 ease-in-out sm:w-[280px]"
+                    className="bg-light-gray relative flex h-[430px] w-[250px] flex-none shrink-0 flex-col items-start justify-start rounded-tl-[45px] rounded-tr-[15px] rounded-br-[45px] rounded-bl-[15px] border border-[#d2a37e] px-11 py-11 shadow-sm backdrop-blur-sm transition-all duration-500 ease-in-out sm:w-[320px] md:mx-1"
                   >
                     {/* Bunga Kiri Atas */}
                     <img
                       src="/story-flower-1.png"
                       alt="Bunga Kiri Atas"
-                      className="pointer-events-none absolute -top-5 -left-5 z-10 w-20 object-contain"
+                      className="pointer-events-none absolute -top-7 -left-5 z-10 w-36 object-contain"
                     />
                     {/* Bunga Kanan Bawah */}
                     <img
                       src="/story-flower-2.png"
                       alt="Bunga Kanan Bawah"
-                      className="pointer-events-none absolute -right-5 -bottom-5 z-10 w-16 object-contain"
+                      className="pointer-events-none absolute -right-7 -bottom-7 z-10 w-28 object-contain"
                     />
 
-                    <h3 className="font-rogue-script text-3xl text-[#5a483c] md:text-4xl">
+                    <h3 className="font-rogue-script text-dark-brown text-3xl md:text-5xl z-11">
                       {item.title}
                     </h3>
-                    <p className="font-viaoda-libre mt-1 text-sm text-[#7c6a5d] italic">
+                    <p className="font-viaoda-libre text-dark-brown text-lg italic z-11">
                       {item.date}
                     </p>
-                    <p className="font-viaoda-libre mt-4 text-xs leading-relaxed text-[#5a483c] md:text-sm">
+                    <p className="font-viaoda-libre font-bold text-dark-brown mt-1 text-sm leading-relaxed md:text-base z-11">
+                      {item.sub}
+                    </p>
+                    <p className="font-viaoda-libre text-dark-brown mt-1 text-sm leading-relaxed md:text-base whitespace-pre-line z-11">
                       {item.description}
                     </p>
                   </div>

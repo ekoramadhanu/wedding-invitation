@@ -90,7 +90,7 @@ export default function WeddingCouple({
       {/* KONTAINER UTAMA */}
       <div className="relative flex w-full max-w-[1100px] flex-col items-center md:mt-14">
         {/* BACKGROUND BINGKAI BUNGA (Aman & Tidak Terpotong) */}
-        <div className="pointer-events-none absolute top-[45%] left-1/2 hidden aspect-[900/555] w-[95vw] max-w-[950px] -translate-x-1/2 bg-[url('/event-bg.png')] bg-contain bg-top bg-no-repeat md:block" />
+        <div className="pointer-events-none absolute md:top-[47%] left-1/2 hidden aspect-[900/555] w-[95vw] max-w-[950px] -translate-x-1/2 bg-[url('/event-bg.png')] bg-contain bg-top bg-no-repeat md:[@media(min-height:700px)]:block" />
 
         {/* CONTENT */}
         <div className="relative z-10 flex h-full w-full flex-col items-center">

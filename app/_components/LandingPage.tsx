@@ -3,6 +3,7 @@ import OverviewSection from "./OverviewSection";
 import EventDetail from "./EventDetail";
 import WeddingCouple from "./WeddingCouple";
 import OurLoveStory from "./OurLoveStory";
+import GaleryPhoto from "./GaleryPhoto";
 import { Pause, Play } from "lucide-react";
 import {
   forwardRef,
@@ -54,6 +55,7 @@ const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
     const weddingCoupleRef = useRef<HTMLElement>(null);
     const eventDetailRef = useRef<HTMLElement>(null);
     const ourLoveStoryRef = useRef<HTMLElement>(null);
+    const GaleryPhotoRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
       // =========================
@@ -181,6 +183,7 @@ const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
         <WeddingCouple weddingCoupleRef={weddingCoupleRef} />
         <EventDetail eventDetailRef={eventDetailRef} invitation={invitation}  />
         <OurLoveStory ourLoveStoryRef={ourLoveStoryRef}  />
+        <GaleryPhoto GaleryPhotoRef={GaleryPhotoRef}  />
 
         
 

@@ -51,21 +51,23 @@ export default function WeddingCover({
             </div>
 
             {/* MOBILE */}
-            <button
+            {/* <button
               type="button"
               onClick={onOpen}
-              className="bg-dark-brown relative z-50 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-md transition hover:scale-105 active:scale-95 sm:hidden"
+              className="bg-dark-brown relative z-50 flex  items-center justify-center rounded-full text-white shadow-md transition hover:scale-105 active:scale-95 sm:hidden"
             >
-              <Mail size={22} strokeWidth={1.5} />
-            </button>
+              Buka Undangan
+            </button> */}
 
             {/* DESKTOP / TABLET */}
             <button
               type="button"
               onClick={onOpen}
-              className="bg-dark-brown font-viaoda-libre relative z-50 hidden items-center gap-2 rounded-full px-6 py-2 text-lg text-white shadow-md transition hover:scale-105 active:scale-95 sm:flex"
+              className="bg-dark-brown font-viaoda-libre relative z-50  items-center gap-2 rounded-full px-6 py-2 text-lg text-white shadow-md transition hover:scale-105 active:scale-95 flex"
             >
-              Buka Undangan
+              <Mail size={22} strokeWidth={1.5} className="mx-1" />
+              <span className="hidden md:flex"> Buka Undangan </span>
+              <span className="flex md:hidden"> Buka  </span>
             </button>
           </div>
 
