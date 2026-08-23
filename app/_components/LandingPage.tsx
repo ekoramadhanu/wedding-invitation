@@ -1,5 +1,6 @@
 "use client";
 import OverviewSection from "./OverviewSection";
+import EventDetail from "./EventDetail";
 import WeddingCouple from "./WeddingCouple";
 import { Pause, Play } from "lucide-react";
 import {
@@ -172,28 +173,9 @@ const LandingPage = forwardRef<LandingPageRef>(
           timeLeft={timeLeft}
         />
         <WeddingCouple weddingCoupleRef={weddingCoupleRef} />
+        <EventDetail eventDetailRef={eventDetailRef} />
 
-        <section
-          ref={eventDetailRef}
-          className="bg-light-gray relative flex min-h-screen w-full flex-col items-center justify-start bg-[url('/paper.png')] bg-cover bg-center px-4 pt-2 md:pt-4"
-        >
-          {/* KONTAINER UTAMA */}
-          <div className="relative flex w-full max-w-[900px] flex-col items-center pt-10">
-            {/* BACKGROUND BINGKAI BUNGA (Diturunkan posisi top-nya) */}
-            <div className="pointer-events-none absolute top-[250px] left-0 hidden h-[800px] w-full bg-[url('/event-bg.png')] bg-contain bg-top bg-no-repeat md:block" />
-
-            {/* CONTENT */}
-            <div className="relative z-10 flex w-full flex-col items-center">
-              {/* JUDUL (Nempel ke paling atas) */}
-              <p className="font-rogue-script text-muted-brown text-center text-6xl font-light md:text-6xl">
-                Detail Acara
-              </p>
-
-              {/* Diberi margin-top agar heksagon turun mengikuti bunga */}
-              
-            </div>
-          </div>
-        </section>
+        
 
         <button
           type="button"

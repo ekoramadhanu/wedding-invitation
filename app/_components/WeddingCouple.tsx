@@ -14,7 +14,7 @@ export default function WeddingCouple({
     >
       {/* TITLE */}
       <div className="flex justify-center">
-        <div className="flex max-w-[630px] flex-col py-10">
+        <div className="flex max-w-[730px] flex-col py-10">
           <p className="font-rogue-script text-muted-brown text-center text-6xl font-light">
             Mempelai
           </p>
@@ -27,11 +27,11 @@ export default function WeddingCouple({
             terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir"
           </p>
           <div className="w-full">
-            <div className="grid grid-cols-12 sm:gap-16">
+            <div className="grid grid-cols-12 sm:gap-14">
               {/* PRIA */}
               <div className="col-span-12 flex items-center justify-center sm:col-span-6">
-                <div className="flex flex-col">
-                  <div className="relative flex h-[280px] w-[260px] items-center justify-center md:h-[320px] md:w-[300px]">
+                <div className="flex flex-col ">
+                  <div className="mx-auto relative flex h-[280px] w-[260px] items-center justify-center md:h-[320px] md:w-[300px]">
                     {/* 1. BUNGA KIRI ATAS */}
                     <div className="md: pointer-events-none absolute top-[+5%] top-[+10%] left-[-20%] z-20 h-[200px] w-[200px] bg-[url('/bride-flower-1.png')] bg-contain bg-center bg-no-repeat md:left-[-15%]" />
                     {/* 2. HEKSAGON BELAKANG (Pointy-Topped */}
@@ -51,7 +51,7 @@ export default function WeddingCouple({
                   </div>
                   <div>
                     <p className="font-rogue-script mb-3 text-center text-4xl font-light">
-                      Eko Ramadhanu Aryputra
+                      Eko Ramadhanu Aryputra, S.kom
                     </p>
                     <p className="font-viaoda-libre mb-3 text-center text-lg">
                       Putra dari
@@ -72,7 +72,7 @@ export default function WeddingCouple({
               {/* WANITA */}
               <div className="col-span-12 flex items-center justify-center sm:col-span-6">
                 <div className="flex flex-col">
-                  <div className="relative flex h-[280px] w-[260px] items-center justify-center md:h-[320px] md:w-[300px]">
+                  <div className="mx-auto relative flex h-[280px] w-[260px] items-center justify-center md:h-[320px] md:w-[300px]">
                     {/* 1. BUNGA KIRI ATAS */}
                     <div className="pointer-events-none absolute right-[-20%] bottom-[+20%] z-20 h-[200px] w-[200px] -scale-x-100 bg-[url('/bride-flower-1.png')] bg-contain bg-center bg-no-repeat md:right-[-15%] md:bottom-[+30%]" />
                     {/* 1. HEKSAGON BELAKANG (Pointy-Topped */}
@@ -93,7 +93,7 @@ export default function WeddingCouple({
 
                   <div>
                     <p className="font-rogue-script mb-3 text-center text-4xl font-light">
-                      Susanti
+                      Susanti, S.Tr.Kom.
                     </p>
                     <p className="font-viaoda-libre mb-3 text-center text-lg">
                       Putri dari
