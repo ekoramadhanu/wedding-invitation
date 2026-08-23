@@ -27,7 +27,7 @@ export default function WeddingCouple({ eventDetailRef }: WeddingCoupleProps) {
           <div className="max-h mt-12 grid h-full w-full grid-cols-12 gap-y-16 md:mt-28 md:gap-x-8 md:gap-y-0">
             {/* ==================== 1. PRIA ==================== */}
             <div className="col-span-12 flex justify-center sm:col-span-6 md:justify-start">
-              <div className="relative flex aspect-[4/3.3] w-full  items-center justify-center max-w-[400px]">
+              <div className="relative flex aspect-[4/3.6] lg:aspect-[4/3.3] w-full  items-center justify-center max-w-[400px]">
                 {/* SVG OUTLINE */}
                 <svg
                   viewBox="0 0 100 120"
@@ -89,7 +89,7 @@ export default function WeddingCouple({ eventDetailRef }: WeddingCoupleProps) {
 
             {/* ==================== 2. WANITA ==================== */}
             <div className="col-span-12 flex justify-center sm:col-span-6 md:justify-end">
-              <div className="relative flex aspect-[4/3.3] w-full items-center justify-center max-w-[400px]">
+              <div className="relative flex aspect-[4/3.6] lg:aspect-[4/3.3] w-full items-center justify-center max-w-[400px]">
                 {/* SVG OUTLINE */}
                 <svg
                   viewBox="0 0 100 120"
