@@ -2,6 +2,7 @@
 import OverviewSection from "./OverviewSection";
 import EventDetail from "./EventDetail";
 import WeddingCouple from "./WeddingCouple";
+import OurLoveStory from "./OurLoveStory";
 import { Pause, Play } from "lucide-react";
 import {
   forwardRef,
@@ -16,8 +17,12 @@ export type LandingPageRef = {
   playMusic: () => Promise<void>;
 };
 
-const LandingPage = forwardRef<LandingPageRef>(
-  function LandingPage(_props, ref) {
+interface LandingPageProps {
+  invitation: string;
+}
+
+const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
+  function LandingPage({ invitation }, ref) {
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const [isPlaying, setIsPlaying] = useState(false);
@@ -48,6 +53,7 @@ const LandingPage = forwardRef<LandingPageRef>(
     const overviewRef = useRef<HTMLElement>(null);
     const weddingCoupleRef = useRef<HTMLElement>(null);
     const eventDetailRef = useRef<HTMLElement>(null);
+    const ourLoveStoryRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
       // =========================
@@ -173,7 +179,8 @@ const LandingPage = forwardRef<LandingPageRef>(
           timeLeft={timeLeft}
         />
         <WeddingCouple weddingCoupleRef={weddingCoupleRef} />
-        <EventDetail eventDetailRef={eventDetailRef} />
+        <EventDetail eventDetailRef={eventDetailRef} invitation={invitation}  />
+        <OurLoveStory ourLoveStoryRef={ourLoveStoryRef}  />
 
         
 

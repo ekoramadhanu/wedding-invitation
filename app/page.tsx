@@ -69,7 +69,7 @@ function WeddingPage() {
       </div>
 
       <div className={isOpen ? "block" : "hidden"}>
-        <LandingPage ref={landingPageRef} />
+        <LandingPage ref={landingPageRef} invitation={invitation}/>
       </div>
     </>
   );
