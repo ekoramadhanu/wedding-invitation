@@ -21,7 +21,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
       date: "Januari, 2025",
       sub: "Awal dari Sebuah Pertemuan",
       description:
-        "Semua berawal dari sebuah perkenalan sederhana. Di tahap ini, kami mulai mengenal satu sama lain, memahami karakter, kebiasaan, serta cara masing-masing dalam menjalani kehidupan. Perlahan, dari setiap percakapan dan pertemuan, kami mulai mengenal lebih jauh dan bertanya dalam hati, “Apakah dia adalah seseorang yang tepat untuk melangkah bersama?”",
+        "Semua berawal dari sebuah perkenalan sederhana. Kami mulai saling mengenal, memahami karakter dan kebiasaan masing-masing, hingga perlahan menemukan keyakinan untuk melangkah bersama.",
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
       date: "September, 2025",
       sub: "Mengenal Lebih Dalam",
       description:
-        "Setelah saling mengenal, kami mulai melangkah ke tahap yang lebih serius. Bukan hanya mengenal satu sama lain, tetapi juga mulai mengenal keluarga masing-masing. Pertemuan dengan keluarga menjadi bagian penting dalam perjalanan kami. Dari sana, kami belajar bahwa sebuah hubungan bukan hanya tentang dua orang, tetapi juga tentang dua keluarga yang nantinya akan berjalan bersama.",
+        "Dari saling mengenal, kami mulai melangkah lebih serius, mempertemukan dan mengenal keluarga, hingga menyatukan dua hati dan dua keluarga dalam satu tujuan.",
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
       date: "Januari, 2026",
       sub: "Menuju Satu Tujuan",
       description:
-        "Setelah melewati berbagai proses dan perjalanan bersama, dengan segala pertimbangan serta doa yang telah dipanjatkan, akhirnya kami memutuskan untuk melangkah ke tahap berikutnya. Dengan restu dari kedua orang tua dan petunjuk dari Allah SWT, kami mengikat niat untuk membawa hubungan ini menuju sebuah ikatan yang lebih serius melalui prosesi lamaran.",
+        "Setelah melewati berbagai perjalanan, dengan doa dan restu kedua orang tua serta petunjuk Allah SWT, kami memantapkan hati untuk melangkah bersama menuju ikatan yang lebih serius.",
     },
     {
       id: 4,
@@ -45,7 +45,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
       date: "November, 2026",
       sub: "Menuju Hari Bahagia",
       description:
-        "Setelah perjalanan panjang yang telah kami lalui, InsyaAllah kami akan melanjutkan langkah ini menuju sebuah ikatan suci dalam pernikahan. Melalui hasil perundingan dan kesepakatan kedua belah pihak keluarga, InsyaAllah pernikahan kami akan dilangsungkan pada November 2026. Semoga langkah yang kami mulai ini menjadi awal dari perjalanan panjang untuk membangun keluarga yang penuh cinta, keberkahan, dan ridha Allah SWT.",
+        "Setelah perjalanan yang kami lalui, InsyaAllah kami akan melangkah menuju ikatan suci pernikahan pada November 2026, dengan restu dan kesepakatan kedua keluarga. Semoga menjadi awal perjalanan panjang yang penuh cinta, keberkahan, dan ridha Allah SWT.",
     },
   ];
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -126,7 +126,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
                 {stories.slice(0, visibleCount).map((item, index) => (
                   <div
                     key={`story-card-${item.id}-${index}`}
-                    className="bg-light-gray relative flex h-[430px] w-[250px] flex-none shrink-0 flex-col items-start justify-start rounded-tl-[45px] rounded-tr-[15px] rounded-br-[45px] rounded-bl-[15px] border border-[#d2a37e] px-11 py-11 shadow-sm backdrop-blur-sm transition-all duration-500 ease-in-out sm:w-[320px] md:mx-1"
+                    className="bg-light-gray relative flex h-[400px] w-[250px] flex-none shrink-0 flex-col items-start justify-start rounded-tl-[45px] rounded-tr-[15px] rounded-br-[45px] rounded-bl-[15px] border border-[#d2a37e] px-11 py-11 shadow-sm backdrop-blur-sm transition-all duration-500 ease-in-out sm:w-[320px] md:mx-1"
                   >
                     {/* Bunga Kiri Atas */}
                     <img

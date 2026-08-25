@@ -42,7 +42,7 @@ export default function WeddingCouple({
                     {/* 3. HEKSAGON DEPAN (Flat-Topped */}
                     <div className="absolute z-10 h-[199px] w-[230px] bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)] md:h-[225px] md:w-[260px]">
                       <div className="absolute inset-[2px] overflow-hidden [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]">
-                        <img src="/IMG_9691.JPG" alt="Mempelai Pria" className="relative -translate-y-20" />
+                        <img src="/IMG_9691_compres.JPG" alt="Mempelai Pria" className="relative -translate-y-20" />
                       </div>
                     </div>
 
@@ -83,7 +83,7 @@ export default function WeddingCouple({
                     {/* 2. HEKSAGON DEPAN (Flat-Topped */}
                     <div className="absolute z-10 h-[199px] w-[230px] bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)] md:h-[225px] md:w-[260px]">
                       <div className="absolute inset-[2px] overflow-hidden [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]">
-                        <img src="/IMG_9698.JPG" alt="Mempelai Wanita" className="relative -translate-y-29 translate-x-3" />
+                        <img src="/IMG_9698_compress.JPG" alt="Mempelai Wanita" className="relative -translate-y-29 translate-x-3" />
                       </div>
                     </div>
 
