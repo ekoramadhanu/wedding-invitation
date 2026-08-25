@@ -1,7 +1,5 @@
 import React from "react";
 import { Calendar, MapPin } from "lucide-react";
-import { eventNames } from "process";
-
 interface WeddingCoupleProps {
   eventDetailRef: React.RefObject<HTMLElement | null>;
   invitation: String;
@@ -31,7 +29,7 @@ export default function WeddingCouple({
       endDate = convertToCalendarUTC("2026-11-21", "23:59");
     } else if (eventName === "Akad Nikah") {
       startDate = convertToCalendarUTC("2026-11-21", "07:00"); // Contoh jam disesuaikan untuk Akad
-      endDate = convertToCalendarUTC("2026-11-21", "10:00");
+      endDate = convertToCalendarUTC("2026-11-21", "09:00");
     }
     const title = `${eventName} - ${groomAndBride}`;
     const dateWedding = "Sabtu, 21 November 2026";
@@ -58,7 +56,8 @@ export default function WeddingCouple({
 
   // Fungsi untuk Tombol Lokasi
   const handleLocationClick = () => {
-    const link= "https://www.google.com/maps/place/Masjid+Al+Ikhlas/@-7.6645507,114.0027885,17z/data=!4m6!3m5!1s0x2dd72ed94e985901:0x76ca118691a9e858!8m2!3d-7.664551!4d114.0061589!16s%2Fg%2F11f5j2d1p2?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=2abc972c-12a7-4ed8-b15c-6198cb22b55b"
+    // const link= "https://www.google.com/maps/place/Masjid+Al+Ikhlas/@-7.6645507,114.0027885,17z/data=!4m6!3m5!1s0x2dd72ed94e985901:0x76ca118691a9e858!8m2!3d-7.664551!4d114.0061589!16s%2Fg%2F11f5j2d1p2?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=2abc972c-12a7-4ed8-b15c-6198cb22b55b"
+    const link= "https://www.google.com/maps/dir/?api=1&destination=Masjid+Al+Ikhlas+Olehan+Situbondo&-7.664551,114.0061589"
     window.open(link, "_blank");
   };
 
@@ -130,7 +129,7 @@ export default function WeddingCouple({
                       Sabtu, 21 November 2026
                     </p>
                     <p className="font-viaoda-libre text-dark-brown text-md font-normal lg:text-xl">
-                      07.00 - Selesai WIB
+                      07.00 - 09.00 WIB
                     </p>
                     <p className="font-viaoda-libre text-dark-brown text-md mt-2 font-bold lg:text-lg">
                       Kediaman Mempelai Wanita

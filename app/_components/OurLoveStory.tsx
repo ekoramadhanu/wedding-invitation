@@ -45,7 +45,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
       date: "November, 2026",
       sub: "Menuju Hari Bahagia",
       description:
-        "Setelah perjalanan yang kami lalui, InsyaAllah kami akan melangkah menuju ikatan suci pernikahan pada November 2026, dengan restu dan kesepakatan kedua keluarga. Semoga menjadi awal perjalanan panjang yang penuh cinta, keberkahan, dan ridha Allah SWT.",
+        "Setelah perjalanan yang kami lalui, InsyaAllah kami akan melangkah menuju ikatan suci pernikahan pada November 2026. Semoga menjadi awal perjalanan panjang yang penuh cinta, keberkahan, dan ridha Allah SWT.",
     },
   ];
   const sliderRef = useRef<HTMLDivElement>(null);
