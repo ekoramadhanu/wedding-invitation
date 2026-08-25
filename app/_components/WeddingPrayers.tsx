@@ -154,13 +154,13 @@ export default function WeddingCouple({
         </h2>
 
         {/* CONTAINER WRAPPER UTAMA */}
-        <div className="xs:max-w-[420px] relative min-h-[350px] md:min-h-[520px] w-full max-w-[360px] sm:aspect-[6/5] sm:min-h-0 sm:max-w-[850px]">
+        <div className="xs:max-w-[420px] relative min-h-[350px] w-full max-w-[360px] sm:aspect-[6/5] sm:min-h-0 sm:max-w-[850px] md:min-h-[520px]">
           {/* 1. LAYER BASE: HEXAGON SEGI-6 */}
           <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
             {/* INNER WHITE CONTENT AREA */}
             <div className="xs:px-10 xs:py-8 flex h-full w-full justify-center bg-white px-6 py-6 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
               {/* WRAPPER KONTEN */}
-              <div className=" flex w-full max-w-[250px] flex-col justify-around md:max-w-[600px]">
+              <div className="flex w-full max-w-[250px] flex-col justify-around md:max-w-[600px]">
                 {/* FORM INPUT */}
                 <form
                   onSubmit={handleSubmit}
@@ -235,19 +235,19 @@ export default function WeddingCouple({
 
                     <button
                       type="button"
-                      onClick={() => setIsGiftModalOpen(true)}
-                      className="border-muted-brown text-muted-brown hover:bg-muted-brown/5 flex w-full items-center justify-center gap-2 rounded border bg-transparent py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors sm:py-2 sm:text-base"
-                    >
-                      <Gift className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> hadiah
-                    </button>
-
-                    <button
-                      type="button"
                       onClick={() => setIsRsvpModalOpen(true)}
                       className="border-muted-brown text-muted-brown hover:bg-muted-brown/5 flex w-full items-center justify-center gap-2 rounded border bg-transparent py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors sm:py-2 sm:text-base"
                     >
                       <QrCode className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> RSVP /
                       Kehadiran
+                    </button>
+                    
+                    <button
+                      type="button"
+                      onClick={() => setIsGiftModalOpen(true)}
+                      className="border-muted-brown text-muted-brown hover:bg-muted-brown/5 flex w-full items-center justify-center gap-2 rounded border bg-transparent py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors sm:py-2 sm:text-base"
+                    >
+                      <Gift className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> hadiah
                     </button>
                   </div>
                 </form>
@@ -273,7 +273,7 @@ export default function WeddingCouple({
           <img
             src="/rsvp-frame.png"
             alt="Octagram Frame Overlay"
-            className="pointer-events-none absolute top-1/2 left-1/2 z-20 md:h-[103%] md:w-[105%] max-w-none -translate-x-1/2 -translate-y-8/15 md:-translate-y-1/2 object-fill h-[100%] w-[94%] "
+            className="pointer-events-none absolute top-1/2 left-1/2 z-20 h-[100%] w-[94%] max-w-none -translate-x-1/2 -translate-y-8/15 object-fill md:h-[103%] md:w-[105%] md:-translate-y-1/2"
           />
         </div>
 
