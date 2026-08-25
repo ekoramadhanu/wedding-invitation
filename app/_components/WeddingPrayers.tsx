@@ -48,15 +48,17 @@ export default function WeddingCouple({
   const eventsList = [
     {
       id: "acara-1",
-      title: "Akad Nikah",
+      title: "Akad Nikah (Intimate)",
       date: "Sabtu, 21 November 2026",
       time: "07.00 - 09.00 WIB",
+      isDisabled: true,
     },
     {
       id: "acara-2",
       title: "Resepsi",
       date: "Sabtu, 21 November 2026",
       time: "13.00 - Selesai WIB",
+      isDisabled: false,
     },
   ];
 
@@ -154,11 +156,12 @@ export default function WeddingCouple({
         </h2>
 
         {/* CONTAINER WRAPPER UTAMA */}
-        <div className="xs:max-w-[420px] relative min-h-[350px] w-full max-w-[360px] sm:aspect-[6/5] sm:min-h-0 sm:max-w-[850px] md:min-h-[520px]">
+
+        <div className="relative flex aspect-[4/3.6] w-full max-w-[850px] items-center justify-center lg:aspect-[4/3.3]">
           {/* 1. LAYER BASE: HEXAGON SEGI-6 */}
           <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
             {/* INNER WHITE CONTENT AREA */}
-            <div className="xs:px-10 xs:py-8 flex h-full w-full justify-center bg-white px-6 py-6 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
+            <div className="px-10 py-8 flex h-full w-full justify-center bg-white md:px-25 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
               {/* WRAPPER KONTEN */}
               <div className="flex w-full max-w-[250px] flex-col justify-around md:max-w-[600px]">
                 {/* FORM INPUT */}
@@ -180,7 +183,7 @@ export default function WeddingCouple({
                         if (errors.name)
                           setErrors((prev) => ({ ...prev, name: undefined }));
                       }}
-                      className={`font-viaoda-libre text-muted-brown w-full border-b bg-transparent py-0.5 text-xs font-normal focus:outline-none sm:py-1 sm:text-xl ${
+                      className={`font-viaoda-libre text-muted-brown w-full border-b bg-transparent py-0.5 text-sm font-normal focus:outline-none sm:py-1 sm:text-xl ${
                         errors.name
                           ? "border-red-500"
                           : "border-gray-300 focus:border-[#6e4e42]"
@@ -210,7 +213,7 @@ export default function WeddingCouple({
                           }));
                       }}
                       /* h-[24px] untuk 1 baris di HP, md:h-[56px] untuk 2 baris di MD ke atas */
-                      className={`font-viaoda-libre text-muted-brown h-[24px] w-full resize-none border-none bg-transparent bg-[linear-gradient(transparent_23px,#d1d5db_1px)] bg-[size:100%_24px] text-xs leading-[24px] focus:outline-none sm:bg-[linear-gradient(transparent_27px,#d1d5db_1px)] sm:bg-[size:100%_28px] sm:text-sm sm:leading-[28px] md:h-[56px] ${
+                      className={`font-viaoda-libre text-muted-brown h-[24px] w-full resize-none border-none bg-transparent bg-[linear-gradient(transparent_23px,#d1d5db_1px)] bg-[size:100%_24px] text-sm leading-[24px] focus:outline-none sm:bg-[linear-gradient(transparent_27px,#d1d5db_1px)] sm:bg-[size:100%_28px] sm:text-sm sm:leading-[28px] md:h-[56px] ${
                         errors.message
                           ? "bg-[linear-gradient(transparent_23px,#ef4444_1px)] sm:bg-[linear-gradient(transparent_27px,#ef4444_1px)]"
                           : ""
@@ -241,7 +244,7 @@ export default function WeddingCouple({
                       <QrCode className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> RSVP /
                       Kehadiran
                     </button>
-                    
+
                     <button
                       type="button"
                       onClick={() => setIsGiftModalOpen(true)}
@@ -268,16 +271,13 @@ export default function WeddingCouple({
               </div>
             </div>
           </div>
-
-          {/* 2. OVERLAY FRAME GAMBAR RESPONSIF */}
-          <img
-            src="/rsvp-frame.png"
-            alt="Octagram Frame Overlay"
-            className="pointer-events-none absolute top-1/2 left-1/2 z-20 h-[100%] w-[94%] max-w-none -translate-x-1/2 -translate-y-8/15 object-fill md:h-[103%] md:w-[105%] md:-translate-y-1/2"
-          />
+          
         </div>
 
-        <div className="mt-16 w-full max-w-[850px] rounded-3xl bg-[#dbe3e6]/60 p-6 backdrop-blur-xs sm:p-10">
+        {/* test */}
+        {/* <div className="xs:max-w-[420px] relative min-h-[350px] w-full max-w-[360px] sm:aspect-[6/5] sm:min-h-0 sm:max-w-[850px] md:min-h-[520px]"></div> */}
+
+        <div className="mt-25 w-full max-w-[850px] rounded-3xl bg-[#dbe3e6]/60 p-6 backdrop-blur-xs sm:p-10">
           <h3 className="font-rogue-script text-muted-brown mb-6 text-left text-3xl sm:text-4xl">
             Doa &amp; Ucapan dari undangan
           </h3>
@@ -418,9 +418,9 @@ export default function WeddingCouple({
               </h3>
               <button
                 onClick={() => setIsRsvpModalOpen(false)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#eee7df] font-serif text-sm text-[#7a6859] transition-transform hover:scale-105"
+                className="absolute -top-3 -right-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#b83b3b] font-sans text-sm font-bold text-white shadow-md transition-transform hover:scale-105"
               >
-                x
+                <X className="h-5 w-5" />
               </button>
             </div>
 
@@ -448,6 +448,7 @@ export default function WeddingCouple({
                           checked={isChecked}
                           onChange={() => toggleEventSelection(evt.id)}
                           className="h-5 w-5 rounded border-gray-300 text-[#4a2e05] focus:ring-[#4a2e05]"
+                          disabled={evt.isDisabled}
                         />
                       </div>
                       <div>

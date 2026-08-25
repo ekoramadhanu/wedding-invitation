@@ -10,14 +10,11 @@ export default function WeddingCouple({
   return (
     <section
       ref={weddingCoupleRef}
-      className="flex min-h-screen w-full flex-col items-center justify-center bg-[url('/paper.png')] overflow-hidden"
+      className="flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[url('/paper.png')]"
     >
       {/* TITLE */}
       <div className="flex justify-center">
         <div className="flex max-w-[800px] flex-col py-10">
-          <p className="font-rogue-script text-muted-brown text-center text-6xl font-light">
-            Mempelai
-          </p>
           <p className="font-viaoda-libre text-muted-brown mt-6 mb-12 px-8 text-center text-base md:text-xl">
             QS. Ar-Rum : 21 <br />
             "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
@@ -26,12 +23,24 @@ export default function WeddingCouple({
             kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar
             terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir"
           </p>
+          <p
+            dir="rtl"
+            className="font-amiri  text-center text-dark-brown text-xl dm:text-3xl"
+          >
+            السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ
+          </p>
+          <p className="font-viaoda-libre text-muted-brown mt-6 mb-12 px-8 text-center text-base md:text-xl">
+            Dengan memohon rahmat &amp; ridho Allah SWT, kami ingin mengundang bapak/ibu/saudara/i untuk menghadiri acara pernikahan kami:
+          </p>
+          <p className="font-rogue-script text-muted-brown text-center text-6xl font-light">
+            Mempelai
+          </p>
           <div className="w-full">
             <div className="grid grid-cols-12 sm:gap-14">
               {/* PRIA */}
               <div className="col-span-12 flex items-center justify-center sm:col-span-6">
-                <div className="flex flex-col ">
-                  <div className="mx-auto relative flex h-[280px] w-[260px] items-center justify-center md:h-[320px] md:w-[300px]">
+                <div className="flex flex-col">
+                  <div className="relative mx-auto flex h-[280px] w-[260px] items-center justify-center md:h-[320px] md:w-[300px]">
                     {/* 1. BUNGA KIRI ATAS */}
                     <div className="md: pointer-events-none absolute top-[+5%] top-[+10%] left-[-20%] z-20 h-[200px] w-[200px] bg-[url('/bride-flower-1.png')] bg-contain bg-center bg-no-repeat md:left-[-15%]" />
                     {/* 2. HEKSAGON BELAKANG (Pointy-Topped */}
@@ -42,7 +51,11 @@ export default function WeddingCouple({
                     {/* 3. HEKSAGON DEPAN (Flat-Topped */}
                     <div className="absolute z-10 h-[199px] w-[230px] bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)] md:h-[225px] md:w-[260px]">
                       <div className="absolute inset-[2px] overflow-hidden [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]">
-                        <img src="/IMG_9691_compres.jpg" alt="Mempelai Pria" className="relative -translate-y-17 sm:-translate-y-20 w-full max-w-md h-auto object-contain mx-auto" />
+                        <img
+                          src="/IMG_9691_compres.jpg"
+                          alt="Mempelai Pria"
+                          className="relative mx-auto h-auto w-full max-w-md -translate-y-17 object-contain sm:-translate-y-20"
+                        />
                       </div>
                     </div>
 
@@ -50,11 +63,12 @@ export default function WeddingCouple({
                     <div className="pointer-events-none absolute right-[-5%] bottom-[+8%] z-20 h-[200px] w-[200px] bg-[url('/bride-flower-2.png')] bg-contain bg-center bg-no-repeat" />
                   </div>
                   <div>
-                    <p className="font-rogue-script mb-3 text-center text-3xl md:text-4xl font-normal">
+                    <p className="font-rogue-script mb-3 text-center text-3xl font-normal md:text-4xl">
                       Eko Ramadhanu Aryputra, S.kom.
                     </p>
                     <p className="font-viaoda-libre mb-3 text-center text-base md:text-lg">
-                      Putra dari Alm. Bapak Ari Kusbiantoro &amp; Ibu Indun Susanti
+                      Putra dari Alm. Bapak Ari Kusbiantoro &amp; Ibu Indun
+                      Susanti
                     </p>
                     {/* <p className="font-viaoda-libre text-center text-lg font-bold">
                       Alm. Bapak Ari Kusbiantoro
@@ -72,7 +86,7 @@ export default function WeddingCouple({
               {/* WANITA */}
               <div className="col-span-12 flex items-center justify-center sm:col-span-6">
                 <div className="flex flex-col">
-                  <div className="mx-auto relative flex h-[280px] w-[260px] items-center justify-center md:h-[320px] md:w-[300px]">
+                  <div className="relative mx-auto flex h-[280px] w-[260px] items-center justify-center md:h-[320px] md:w-[300px]">
                     {/* 1. BUNGA KIRI ATAS */}
                     <div className="pointer-events-none absolute right-[-20%] bottom-[+20%] z-20 h-[200px] w-[200px] -scale-x-100 bg-[url('/bride-flower-1.png')] bg-contain bg-center bg-no-repeat md:right-[-15%] md:bottom-[+30%]" />
                     {/* 1. HEKSAGON BELAKANG (Pointy-Topped */}
@@ -83,7 +97,11 @@ export default function WeddingCouple({
                     {/* 2. HEKSAGON DEPAN (Flat-Topped */}
                     <div className="absolute z-10 h-[199px] w-[230px] bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)] md:h-[225px] md:w-[260px]">
                       <div className="absolute inset-[2px] overflow-hidden [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]">
-                        <img src="/IMG_9698_compress.jpg" alt="Mempelai Wanita" className="relative -translate-y-22 sm:-translate-y-27 w-full max-w-md h-auto object-contain mx-auto translate-x-3" />
+                        <img
+                          src="/IMG_9698_compress.jpg"
+                          alt="Mempelai Wanita"
+                          className="relative mx-auto h-auto w-full max-w-md translate-x-3 -translate-y-22 object-contain sm:-translate-y-27"
+                        />
                       </div>
                     </div>
 
@@ -92,10 +110,10 @@ export default function WeddingCouple({
                   </div>
 
                   <div>
-                    <p className="font-rogue-script mb-3 text-center text-3xl md:text-4xl font-normal">
+                    <p className="font-rogue-script mb-3 text-center text-3xl font-normal md:text-4xl">
                       Susanti, S.Tr.Kom.
                     </p>
-                    <p className="font-viaoda-libre mb-3 text-center  text-base md:text-lg">
+                    <p className="font-viaoda-libre mb-3 text-center text-base md:text-lg">
                       Putri dari Bapak Mohammad Suharda &amp; Ibu Watini
                     </p>
                     {/* <p className="font-viaoda-libre text-center text-lg font-bold">
