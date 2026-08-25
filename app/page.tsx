@@ -14,7 +14,7 @@ function WeddingPage() {
   const invitation =
     searchParams.get("invitation") || "Wedding Invitation";
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const landingPageRef = useRef<LandingPageRef>(null);
 
   const isGuardActive = useRef(false);
@@ -26,7 +26,7 @@ function WeddingPage() {
 
     console.log("2. PLAY MUSIC DONE");
 
-    setIsOpen(false);
+    setIsOpen(true);
 
     console.log("3. IS OPEN SET");
 
