@@ -119,38 +119,40 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
 
             {/* Pembungkus Slider Responsif */}
             <div className="mx-auto flex w-full max-w-[310px] items-center justify-center overflow-hidden py-8 sm:max-w-[620px] lg:max-w-[1100px]">
+              {/* Berikan px-6 di sini agar bunga di kartu pertama/terakhir tidak terpotong atau ke-expose di batas luar */}
               <div
                 ref={sliderRef}
-                className="flex items-center justify-center gap-4 sm:gap-6"
+                className="flex items-center justify-center gap-4 px-6 sm:gap-6"
               >
                 {stories.slice(0, visibleCount).map((item, index) => (
                   <div
                     key={`story-card-${item.id}-${index}`}
-                    className="bg-light-gray relative flex h-[400px] w-[250px] flex-none shrink-0 flex-col items-start justify-start rounded-tl-[45px] rounded-tr-[15px] rounded-br-[45px] rounded-bl-[15px] border border-[#d2a37e] px-11 py-11 shadow-sm backdrop-blur-sm transition-all duration-500 ease-in-out sm:w-[320px] md:mx-1"
+                    className="bg-light-gray relative flex aspect-[3/4] w-[260px] flex-none shrink-0 flex-col items-start justify-center rounded-tl-[45px] rounded-tr-[15px] rounded-br-[45px] rounded-bl-[15px] border border-[#d2a37e] p-6 shadow-sm backdrop-blur-sm transition-all duration-500 ease-in-out sm:w-[320px] sm:p-11 md:mx-1"
                   >
-                    {/* Bunga Kiri Atas */}
+                    {/* Bunga Kiri Atas: Diatur agar aman di batas kartu (-top-[6%] -left-[2%]) */}
                     <img
                       src="/story-flower-1.png"
                       alt="Bunga Kiri Atas"
-                      className="pointer-events-none absolute -top-7 -left-5 z-10 w-36 object-contain"
+                      className="pointer-events-none absolute -top-[4%] -left-[3%] z-10 w-[32%] object-contain"
                     />
+
                     {/* Bunga Kanan Bawah */}
                     <img
                       src="/story-flower-2.png"
                       alt="Bunga Kanan Bawah"
-                      className="pointer-events-none absolute -right-7 -bottom-7 z-10 w-28 object-contain"
+                      className="pointer-events-none absolute -right-[4.5%] -bottom-[4.5%] z-10 w-[28%] object-contain"
                     />
 
-                    <h3 className="font-rogue-script text-dark-brown text-3xl md:text-5xl z-11">
+                    <h3 className="font-rogue-script text-dark-brown z-11 text-3xl md:text-5xl">
                       {item.title}
                     </h3>
-                    <p className="font-viaoda-libre text-dark-brown text-lg italic z-11">
+                    <p className="font-viaoda-libre text-dark-brown z-11 text-base italic md:text-lg">
                       {item.date}
                     </p>
-                    <p className="font-viaoda-libre font-bold text-dark-brown mt-1 text-sm leading-relaxed md:text-base z-11">
+                    <p className="font-viaoda-libre text-dark-brown z-11 mt-1 text-xs leading-relaxed font-bold md:text-base">
                       {item.sub}
                     </p>
-                    <p className="font-viaoda-libre text-dark-brown mt-1 text-sm leading-relaxed md:text-base whitespace-pre-line z-11">
+                    <p className="font-viaoda-libre text-dark-brown z-11 mt-1 text-xs leading-relaxed whitespace-pre-line md:text-base">
                       {item.description}
                     </p>
                   </div>

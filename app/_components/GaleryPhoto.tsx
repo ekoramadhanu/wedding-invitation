@@ -23,7 +23,7 @@ export default function GaleryPhoto({ GaleryPhotoRef }: GaleryPhotoProps) {
   return (
     <section
       ref={GaleryPhotoRef}
-      className="bg-light-gray flex min-h-screen w-full flex-col items-center justify-center bg-[url('/paper.png')] py-12"
+      className="bg-light-gray flex min-h-screen w-full flex-col items-center justify-center bg-[url('/paper.png')] py-12 overflow-hidden"
     >
       <div className="flex w-full max-w-[1200px] flex-1 flex-col items-center justify-center px-4">
         {/* Judul Utama */}

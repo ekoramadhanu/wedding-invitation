@@ -14,7 +14,7 @@ function WeddingPage() {
   const invitation =
     searchParams.get("invitation") || "Wedding Invitation";
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const landingPageRef = useRef<LandingPageRef>(null);
 
   const isGuardActive = useRef(false);

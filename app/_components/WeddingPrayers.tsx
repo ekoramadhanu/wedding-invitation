@@ -154,22 +154,22 @@ export default function WeddingCouple({
         </h2>
 
         {/* CONTAINER WRAPPER UTAMA */}
-        <div className="relative aspect-[1/1.1] w-full max-w-[850px] sm:aspect-[6/5]">
+        <div className="xs:max-w-[420px] relative min-h-[350px] md:min-h-[520px] w-full max-w-[360px] sm:aspect-[6/5] sm:min-h-0 sm:max-w-[850px]">
           {/* 1. LAYER BASE: HEXAGON SEGI-6 */}
-          <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
+          <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
             {/* INNER WHITE CONTENT AREA */}
-            <div className="flex h-full w-full justify-center bg-white px-8 py-10 [clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)] sm:px-16 sm:py-12">
+            <div className="xs:px-10 xs:py-8 flex h-full w-full justify-center bg-white px-6 py-6 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
               {/* WRAPPER KONTEN */}
-              <div className="flex w-full max-w-[340px] flex-col sm:max-w-[600px]">
+              <div className=" flex w-full max-w-[250px] flex-col justify-around md:max-w-[600px]">
                 {/* FORM INPUT */}
                 <form
                   onSubmit={handleSubmit}
                   noValidate
-                  className="flex flex-col py-6 sm:py-10"
+                  className="flex flex-col py-2 sm:py-6"
                 >
                   {/* Input Nama */}
-                  <div className="flex flex-col gap-1 text-left">
-                    <label className="font-rogue-script text-muted-brown text-xl sm:text-3xl">
+                  <div className="flex flex-col gap-0.5 text-left sm:gap-1">
+                    <label className="font-rogue-script text-muted-brown text-xl md:text-3xl">
                       Nama :
                     </label>
                     <input
@@ -180,26 +180,26 @@ export default function WeddingCouple({
                         if (errors.name)
                           setErrors((prev) => ({ ...prev, name: undefined }));
                       }}
-                      className={`font-viaoda-libre text-muted-brown w-full border-b bg-transparent py-1 text-base font-normal focus:outline-none sm:text-xl ${
+                      className={`font-viaoda-libre text-muted-brown w-full border-b bg-transparent py-0.5 text-xs font-normal focus:outline-none sm:py-1 sm:text-xl ${
                         errors.name
                           ? "border-red-500"
                           : "border-gray-300 focus:border-[#6e4e42]"
                       }`}
                     />
                     {errors.name && (
-                      <span className="font-viaoda-libre mt-1 text-base text-red-500">
+                      <span className="font-viaoda-libre mt-1 text-xs text-red-500 sm:text-base">
                         {errors.name}
                       </span>
                     )}
                   </div>
 
                   {/* Input Pesan */}
-                  <div className="mt-4 flex flex-col text-left">
-                    <label className="font-rogue-script text-muted-brown text-xl sm:text-3xl">
+                  <div className="mt-2 flex flex-col text-left sm:mt-4">
+                    <label className="font-rogue-script text-muted-brown text-xl md:text-3xl">
                       Pesan untuk Mempelai :
                     </label>
                     <textarea
-                      rows={3}
+                      rows={1}
                       value={message}
                       onChange={(e) => {
                         setMessage(e.target.value);
@@ -209,56 +209,59 @@ export default function WeddingCouple({
                             message: undefined,
                           }));
                       }}
-                      className={`w-full resize-none border-none bg-transparent bg-[linear-gradient(transparent_27px,#d1d5db_1px)] bg-[size:100%_28px] font-sans text-xs leading-[28px] text-gray-800 focus:outline-none sm:text-sm ${
+                      /* h-[24px] untuk 1 baris di HP, md:h-[56px] untuk 2 baris di MD ke atas */
+                      className={`font-viaoda-libre text-muted-brown h-[24px] w-full resize-none border-none bg-transparent bg-[linear-gradient(transparent_23px,#d1d5db_1px)] bg-[size:100%_24px] text-xs leading-[24px] focus:outline-none sm:bg-[linear-gradient(transparent_27px,#d1d5db_1px)] sm:bg-[size:100%_28px] sm:text-sm sm:leading-[28px] md:h-[56px] ${
                         errors.message
-                          ? "bg-[linear-gradient(transparent_27px,#ef4444_1px)]"
+                          ? "bg-[linear-gradient(transparent_23px,#ef4444_1px)] sm:bg-[linear-gradient(transparent_27px,#ef4444_1px)]"
                           : ""
                       }`}
                     />
                     {errors.message && (
-                      <span className="font-viaoda-libre mt-1 text-base text-red-500">
+                      <span className="font-viaoda-libre mt-1 text-xs text-red-500 sm:text-base">
                         {errors.message}
                       </span>
                     )}
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="mt-2 flex flex-col gap-2 sm:mt-4 sm:gap-2.5">
+                  <div className="mt-3 flex flex-col gap-1.5 sm:mt-4 sm:gap-2.5">
                     <button
                       type="submit"
-                      className="bg-muted-brown flex w-full items-center justify-center gap-2 rounded py-2 text-base font-semibold tracking-wider text-white uppercase shadow-sm transition-colors hover:bg-[#5a3f35]"
+                      className="bg-muted-brown flex w-full items-center justify-center gap-2 rounded py-1.5 text-xs font-semibold tracking-wider text-white uppercase shadow-sm transition-colors hover:bg-[#5a3f35] sm:py-2 sm:text-base"
                     >
-                      Kirim <Send className="h-3.5 w-3.5 fill-current" />
+                      Kirim{" "}
+                      <Send className="h-3 w-3 fill-current sm:h-3.5 sm:w-3.5" />
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setIsGiftModalOpen(true)}
-                      className="border-muted-brown text-muted-brown hover:bg-muted-brown/5 mt-2 flex w-full items-center justify-center gap-2 rounded border bg-transparent py-2 text-base font-semibold tracking-wider uppercase transition-colors"
+                      className="border-muted-brown text-muted-brown hover:bg-muted-brown/5 flex w-full items-center justify-center gap-2 rounded border bg-transparent py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors sm:py-2 sm:text-base"
                     >
-                      <Gift className="h-3.5 w-3.5" /> hadiah
+                      <Gift className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> hadiah
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setIsRsvpModalOpen(true)}
-                      className="border-muted-brown text-muted-brown hover:bg-muted-brown/5 mt-2 flex w-full items-center justify-center gap-2 rounded border bg-transparent py-2 text-base font-semibold tracking-wider uppercase transition-colors"
+                      className="border-muted-brown text-muted-brown hover:bg-muted-brown/5 flex w-full items-center justify-center gap-2 rounded border bg-transparent py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors sm:py-2 sm:text-base"
                     >
-                      <QrCode className="h-3.5 w-3.5" /> RSVP / Kehadiran
+                      <QrCode className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> RSVP /
+                      Kehadiran
                     </button>
                   </div>
                 </form>
 
                 {/* UCAPAN PENUTUP */}
-                <div className="mt-1 flex flex-col gap-1 text-left sm:mt-4 sm:gap-1.5">
-                  <p className="font-rogue-script text-muted-brown text-base leading-relaxed italic sm:text-3xl">
+                <div className="mt-2 flex flex-col text-left sm:mt-4 sm:gap-1.5">
+                  <p className="font-rogue-script text-muted-brown xs:text-base text-sm leading-tight italic sm:text-3xl sm:leading-relaxed">
                     Atas doa &amp; ucapan bapak/ibu/saudara/i, Kami mengucapkan
                     terima kasih.
                   </p>
-                  <p className="mt -1 font-rogue-script text-muted-brown text-base sm:text-3xl">
+                  <p className="font-rogue-script text-muted-brown xs:text-base mt-1 text-sm sm:mt-0 sm:text-3xl">
                     Salam
                   </p>
-                  <h3 className="font-viaoda-libre text-muted-brown] text-base font-bold italic sm:text-xl">
+                  <h3 className="font-viaoda-libre text-muted-brown xs:text-sm text-xs font-bold italic sm:text-xl">
                     Eko &amp; Susan
                   </h3>
                 </div>
@@ -270,7 +273,7 @@ export default function WeddingCouple({
           <img
             src="/rsvp-frame.png"
             alt="Octagram Frame Overlay"
-            className="pointer-events-none absolute top-1/2 left-1/2 z-20 h-[106%] w-[108%] max-w-none translate-x-[calc(-50%+2px)] -translate-y-1/2 object-fill sm:h-[108%] sm:w-[106%] md:h-[750px] md:w-[820px] md:translate-x-[calc(-50%+1px)]"
+            className="pointer-events-none absolute top-1/2 left-1/2 z-20 md:h-[103%] md:w-[105%] max-w-none -translate-x-1/2 -translate-y-8/15 md:-translate-y-1/2 object-fill h-[100%] w-[94%] "
           />
         </div>
 
