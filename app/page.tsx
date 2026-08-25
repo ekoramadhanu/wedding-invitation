@@ -26,7 +26,7 @@ function WeddingPage() {
 
     console.log("2. PLAY MUSIC DONE");
 
-    setIsOpen(true);
+    setIsOpen(false);
 
     console.log("3. IS OPEN SET");
 
