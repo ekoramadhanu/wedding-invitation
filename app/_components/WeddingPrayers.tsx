@@ -1,8 +1,17 @@
-'use client'
+"use client";
 
-import React, { useState } from "react";
-import { Send, Gift, QrCode, Copy, Check, X, MapPin } from "lucide-react";
-import { supabase } from '@/lib/supabaseClient'
+import React, { useState, useEffect } from "react";
+import {
+  Send,
+  Gift,
+  QrCode,
+  Copy,
+  Check,
+  X,
+  MapPin,
+  Loader2,
+} from "lucide-react";
+import { createClient } from "@/lib/supabaseClient";
 
 interface WeddingPrayersProps {
   WeddingPrayersRef: React.RefObject<HTMLElement | null>;
@@ -12,13 +21,14 @@ interface WeddingPrayersProps {
 interface Wish {
   id: number;
   name: string;
-  message: string;
+  ucapan: string;
 }
 
 export default function WeddingCouple({
   WeddingPrayersRef,
   invitation,
 }: WeddingPrayersProps) {
+  const supabase = createClient();
   const [name, setName] = useState(invitation || "");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<{ name?: string; message?: string }>({});
@@ -47,6 +57,7 @@ export default function WeddingCouple({
   const [isRsvpModalOpen, setIsRsvpModalOpen] = useState(false);
   const [selectedEvents, setSelectedEvents] = useState<string[]>([]);
   const [attendeesCount, setAttendeesCount] = useState<number>(1);
+  const [isLoadingUcapan, setIsLoadingUcapan] = useState(false);
 
   const eventsList = [
     {
@@ -65,9 +76,7 @@ export default function WeddingCouple({
     },
   ];
 
-  const [wishes, setWishes] = useState<Wish[]>([
-    
-  ]);
+  const [wishes, setWishes] = useState<Wish[]>([]);
 
   const handleCopy = (text: string, index: number) => {
     navigator.clipboard.writeText(text);
@@ -75,55 +84,101 @@ export default function WeddingCouple({
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
+  const fetchUcapan = async () => {
+    const { data, error } = await supabase
+      .from("wedding_mst_ucapan")
+      .select("id, name, ucapan, created_at")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Gagal mengambil data ucapan:", error.message);
+      return;
+    }
+
+    if (data) {
+      setWishes(data);
+    }
+  };
+
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   const newErrors: { name?: string; message?: string } = {};
+
+  //   if (!name.trim()) {
+  //     newErrors.name = "Nama wajib diisi.";
+  //   }
+  //   if (!message.trim()) {
+  //     newErrors.message = "Pesan wajib diisi.";
+  //   }
+
+  //   if (Object.keys(newErrors).length > 0) {
+  //     setErrors(newErrors);
+  //     return;
+  //   }
+
+  //   setErrors({});
+
+  //   setIsLoadingUcapan(true);
+
+  //   try {
+  //     const { data, error } = await supabase
+  //       .from("wedding_mst_ucapan") // Ganti dengan nama tabel Anda di Supabase
+  //       .insert([
+  //         {
+  //           name: name.trim(),
+  //           ucapan: message.trim(),
+  //         },
+  //       ]); // Mengembalikan data yang baru saja dimasukkan (termasuk id & created_at dari database)
+  //   } catch (err) {
+  //     console.log("Gagal menyimpan ucapan:", err.message);
+  //     setErrors({ message: "Gagal mengirim pesan. Coba lagi nanti." });
+  //     return;
+  //   }
+
+  //   fetchUcapan();
+  //   setMessage("");
+  // };
+
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const newErrors: { name?: string; message?: string } = {};
+    e.preventDefault();
+    const newErrors: { name?: string; message?: string } = {};
+    if (!name.trim()) {
+      newErrors.name = "Nama wajib diisi.";
+    }
+    if (!message.trim()) {
+      newErrors.message = "Pesan wajib diisi.";
+    }
 
-  if (!name.trim()) {
-    newErrors.name = "Nama wajib diisi.";
-  }
-  if (!message.trim()) {
-    newErrors.message = "Pesan wajib diisi.";
-  }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
-  if (Object.keys(newErrors).length > 0) {
-    setErrors(newErrors);
-    return;
-  }
+    setErrors({});
+    // 1. Aktifkan status loading
+    setIsLoadingUcapan(true);
 
-  setErrors({});
+    try {
+      const { error } = await supabase.from("wedding_mst_ucapan").insert([
+        {
+          name: name.trim(),
+          ucapan: message.trim(),
+        },
+      ]);
 
-  // 1. Kirim data ke Supabase
-  const { data, error } = await supabase
-    .from("wedding_mst_ucapan") // Ganti dengan nama tabel Anda di Supabase
-    .insert([
-      {
-        name: name.trim(),
-        ucapan: message.trim(),
-      },
-    ])
-    .select(); // Mengembalikan data yang baru saja dimasukkan (termasuk id & created_at dari database)
-
-  if (error) {
-    console.log("Gagal menyimpan ucapan:", error.message);
-    setErrors({ message: "Gagal mengirim pesan. Coba lagi nanti." });
-    return;
-  }
-
-  // 2. Jika berhasil, update state lokal
-  if (data && data.length > 0) {
-    const insertedWish = data[0];
-    
-    const newWish: Wish = {
-      id: insertedWish.id, // Menggunakan ID asli dari database
-      name: insertedWish.name,
-      message: insertedWish.message,
-    };
-
-    setWishes((prev) => [newWish, ...prev]);
-    setMessage("");
-  }
-};
+      if (error) {
+        alert("Gagal mengirim ucapan: " + error.message);
+      } else {
+        setMessage("");
+        fetchUcapan();
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      // 2. Matikan status loading (baik sukses maupun gagal)
+      setIsLoadingUcapan(false);
+    }
+  };
 
   const toggleEventSelection = (eventId: string) => {
     setSelectedEvents((prev) =>
@@ -138,6 +193,10 @@ export default function WeddingCouple({
     console.log("RSVP Data:", { selectedEvents, attendeesCount });
     setIsRsvpModalOpen(false);
   };
+
+  useEffect(() => {
+    fetchUcapan();
+  }, []);
 
   return (
     <section
@@ -155,7 +214,7 @@ export default function WeddingCouple({
           {/* 1. LAYER BASE: HEXAGON SEGI-6 */}
           <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
             {/* INNER WHITE CONTENT AREA */}
-            <div className="px-10 py-8 flex h-full w-full justify-center bg-white md:px-25 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
+            <div className="flex h-full w-full justify-center bg-white px-10 py-8 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)] md:px-25">
               {/* WRAPPER KONTEN */}
               <div className="flex w-full max-w-[250px] flex-col justify-around md:max-w-[600px]">
                 {/* FORM INPUT */}
@@ -177,7 +236,7 @@ export default function WeddingCouple({
                         if (errors.name)
                           setErrors((prev) => ({ ...prev, name: undefined }));
                       }}
-                      className={`font-viaoda-libre text-muted-brown w-full border-b bg-transparent py-0.5 text-sm font-normal focus:outline-none sm:py-1 sm:text-xl ${
+                      className={`font-viaoda-libre text-muted-brown w-full border-b bg-transparent py-0.5 text-base font-normal focus:outline-none sm:py-1 sm:text-xl ${
                         errors.name
                           ? "border-red-500"
                           : "border-gray-300 focus:border-[#6e4e42]"
@@ -207,7 +266,7 @@ export default function WeddingCouple({
                           }));
                       }}
                       /* h-[24px] untuk 1 baris di HP, md:h-[56px] untuk 2 baris di MD ke atas */
-                      className={`font-viaoda-libre text-muted-brown h-[24px] w-full resize-none border-none bg-transparent bg-[linear-gradient(transparent_23px,#d1d5db_1px)] bg-[size:100%_24px] text-sm leading-[24px] focus:outline-none sm:bg-[linear-gradient(transparent_27px,#d1d5db_1px)] sm:bg-[size:100%_28px] sm:text-sm sm:leading-[28px] md:h-[56px] ${
+                      className={`font-viaoda-libre text-muted-brown h-[24px] w-full resize-none border-none bg-transparent bg-[linear-gradient(transparent_23px,#d1d5db_1px)] bg-[size:100%_24px] text-base leading-[24px] focus:outline-none sm:bg-[linear-gradient(transparent_27px,#d1d5db_1px)] sm:bg-[size:100%_28px] sm:text-xl sm:leading-[28px] md:h-[56px] ${
                         errors.message
                           ? "bg-[linear-gradient(transparent_23px,#ef4444_1px)] sm:bg-[linear-gradient(transparent_27px,#ef4444_1px)]"
                           : ""
@@ -226,8 +285,18 @@ export default function WeddingCouple({
                       type="submit"
                       className="bg-muted-brown flex w-full items-center justify-center gap-2 rounded py-1.5 text-xs font-semibold tracking-wider text-white uppercase shadow-sm transition-colors hover:bg-[#5a3f35] sm:py-2 sm:text-base"
                     >
-                      Kirim{" "}
-                      <Send className="h-3 w-3 fill-current sm:h-3.5 sm:w-3.5" />
+                      {isLoadingUcapan ? (
+                        <>
+                          {/* animate-spin membuat ikon berputar */}
+                          <span>Mengirim </span>
+                          <Loader2 className="h-3 w-3 animate-spin fill-current sm:h-3.5 sm:w-3.5" />
+                        </>
+                      ) : (
+                        <>
+                          <span>Kirim </span>
+                          <Send className="h-3 w-3 fill-current sm:h-3.5 sm:w-3.5" />
+                        </>
+                      )}
                     </button>
 
                     <button
@@ -265,7 +334,6 @@ export default function WeddingCouple({
               </div>
             </div>
           </div>
-          
         </div>
 
         {/* test */}
@@ -286,7 +354,7 @@ export default function WeddingCouple({
                   {item.name}
                 </h4>
                 <p className="mt-1 font-serif text-sm leading-relaxed text-[#78695f]">
-                  {item.message}
+                  {item.ucapan}
                 </p>
               </div>
             ))}

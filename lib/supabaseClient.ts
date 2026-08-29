@@ -1,7 +1,15 @@
-import { createClient } from '@supabase/supabase-js'
+// lib/supabase/client.ts
+import { createBrowserClient } from '@supabase/ssr'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-// Gunakan NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (bukan ANON_KEY)
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
+let client: ReturnType<typeof createBrowserClient> | undefined
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export function createClient() {
+  if (client) return client
+
+  client = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
+
+  return client
+}
