@@ -1,5 +1,8 @@
+'use client'
+
 import React, { useState } from "react";
 import { Send, Gift, QrCode, Copy, Check, X, MapPin } from "lucide-react";
+import { supabase } from '@/lib/supabaseClient'
 
 interface WeddingPrayersProps {
   WeddingPrayersRef: React.RefObject<HTMLElement | null>;
@@ -63,39 +66,7 @@ export default function WeddingCouple({
   ];
 
   const [wishes, setWishes] = useState<Wish[]>([
-    {
-      id: 1,
-      name: "Elizabeth Bennet Dan Darcy",
-      message:
-        "Sejatinya pernikahan adalah lembaran baru kehidupan, kebahagiaan, kebersamaan, dan hal-hal baik lainnya yang menyertai.",
-    },
-    {
-      id: 2,
-      name: "Edward & Bella",
-      message:
-        "Mantap!! Selamat berbahagia menjalani bahtera rumah tangga yang baru.",
-    },
-    {
-      id: 3,
-      name: "Cinta & Rangga",
-      message: "Yeay!! Selamat ya, akhirnya kalian nikah juga :p",
-    },
-    {
-      id: 4,
-      name: "Shahrukh Khan Dan Kajol",
-      message: "Selamat menempuh hidup baru. Semoga cepat dapat momongan",
-    },
-    {
-      id: 5,
-      name: "Kirigaya Kazuto Dan Yuuki Asuna",
-      message: "Congrats ya!! Selamat memulai hidup baru.",
-    },
-    {
-      id: 6,
-      name: "Romeo & Juliet",
-      message:
-        "Congrats ya!! Selamat memulai hidup baru, tak lagi sendiri, tapi sebagai pasangan.Semoga keluarga terus diberkati dalam segala bidang :)God bless you",
-    },
+    
   ]);
 
   const handleCopy = (text: string, index: number) => {
@@ -104,32 +75,55 @@ export default function WeddingCouple({
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors: { name?: string; message?: string } = {};
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const newErrors: { name?: string; message?: string } = {};
 
-    if (!name.trim()) {
-      newErrors.name = "Nama wajib diisi.";
-    }
-    if (!message.trim()) {
-      newErrors.message = "Pesan wajib diisi.";
-    }
+  if (!name.trim()) {
+    newErrors.name = "Nama wajib diisi.";
+  }
+  if (!message.trim()) {
+    newErrors.message = "Pesan wajib diisi.";
+  }
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
 
-    setErrors({});
+  setErrors({});
+
+  // 1. Kirim data ke Supabase
+  const { data, error } = await supabase
+    .from("wedding_mst_ucapan") // Ganti dengan nama tabel Anda di Supabase
+    .insert([
+      {
+        name: name.trim(),
+        ucapan: message.trim(),
+      },
+    ])
+    .select(); // Mengembalikan data yang baru saja dimasukkan (termasuk id & created_at dari database)
+
+  if (error) {
+    console.log("Gagal menyimpan ucapan:", error.message);
+    setErrors({ message: "Gagal mengirim pesan. Coba lagi nanti." });
+    return;
+  }
+
+  // 2. Jika berhasil, update state lokal
+  if (data && data.length > 0) {
+    const insertedWish = data[0];
+    
     const newWish: Wish = {
-      id: Date.now(),
-      name: name.trim(),
-      message: message.trim(),
+      id: insertedWish.id, // Menggunakan ID asli dari database
+      name: insertedWish.name,
+      message: insertedWish.message,
     };
 
     setWishes((prev) => [newWish, ...prev]);
     setMessage("");
-  };
+  }
+};
 
   const toggleEventSelection = (eventId: string) => {
     setSelectedEvents((prev) =>
