@@ -339,7 +339,7 @@ export default function WeddingCouple({
         {/* test */}
         {/* <div className="xs:max-w-[420px] relative min-h-[350px] w-full max-w-[360px] sm:aspect-[6/5] sm:min-h-0 sm:max-w-[850px] md:min-h-[520px]"></div> */}
 
-        <div className="mt-25 w-full max-w-[850px] rounded-3xl bg-[#dbe3e6]/60 p-6 backdrop-blur-xs sm:p-10">
+        <div className="mt-25 w-full max-w-[850px] max-height-[500px] rounded-3xl bg-[#dbe3e6]/60 p-6 backdrop-blur-xs sm:p-10">
           <h3 className="font-rogue-script text-muted-brown mb-6 text-left text-3xl sm:text-4xl">
             Doa &amp; Ucapan dari undangan
           </h3>

@@ -98,9 +98,9 @@ export default function WeddingCouple({
                     <div className="absolute z-10 h-[199px] w-[230px] bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)] md:h-[225px] md:w-[260px]">
                       <div className="absolute inset-[2px] overflow-hidden [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)]">
                         <img
-                          src="/IMG_9698_compress.jpg"
+                          src="/IMG_9698_compress.jpeg"
                           alt="Mempelai Wanita"
-                          className="relative mx-auto h-auto w-full max-w-md translate-x-3 -translate-y-22 object-contain sm:-translate-y-27"
+                          className="relative mx-auto h-auto w-full scale-130 max-w-md -translate-x-3 -translate-y-25 object-contain sm:-translate-y-29"
                         />
                       </div>
                     </div>
