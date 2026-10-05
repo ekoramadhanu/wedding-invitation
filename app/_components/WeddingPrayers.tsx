@@ -38,19 +38,24 @@ export default function WeddingCouple({
 
   const giftAccounts = [
     {
-      bank: "Bank Mandiri",
-      name: "Ucok Fernando",
-      accountNumber: "123000098",
-    },
-    {
-      bank: "OVO",
-      name: "Ucok Fernando",
-      accountNumber: "787878000",
-    },
-    {
       bank: "Bank BCA",
-      name: "Butet Fransiska",
-      accountNumber: "6788231000",
+      name: "Susanti",
+      accountNumber: "1211216927",
+    },
+    {
+      bank: "Bank BRI",
+      name: "Susanti",
+      accountNumber: "653801008024536",
+    },
+    {
+      bank: "Bank Jago",
+      name: "Eko Ramadhanu Aryputra S Kom",
+      accountNumber: "103334548365",
+    },
+    {
+      bank: "Bank BSI",
+      name: "Eko Ramadhanu Aryputra",
+      accountNumber: "7257199748",
     },
   ];
 
@@ -58,20 +63,17 @@ export default function WeddingCouple({
   const [selectedEvents, setSelectedEvents] = useState<string[]>([]);
   const [attendeesCount, setAttendeesCount] = useState<number>(1);
   const [isLoadingUcapan, setIsLoadingUcapan] = useState(false);
+  const [isLoadingRSVP, setIsLoadingRSVP] = useState(false);
 
   const eventsList = [
     {
-      id: "acara-1",
-      title: "Akad Nikah (Intimate)",
-      date: "Sabtu, 21 November 2026",
-      time: "07.00 - 09.00 WIB",
-      isDisabled: true,
+      id: 1,
+      title: "Hadir",
+      isDisabled: false,
     },
     {
-      id: "acara-2",
-      title: "Resepsi",
-      date: "Sabtu, 21 November 2026",
-      time: "13.00 - Selesai WIB",
+      id: 0,
+      title: "Tidak hadir",
       isDisabled: false,
     },
   ];
@@ -99,45 +101,6 @@ export default function WeddingCouple({
       setWishes(data);
     }
   };
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const newErrors: { name?: string; message?: string } = {};
-
-  //   if (!name.trim()) {
-  //     newErrors.name = "Nama wajib diisi.";
-  //   }
-  //   if (!message.trim()) {
-  //     newErrors.message = "Pesan wajib diisi.";
-  //   }
-
-  //   if (Object.keys(newErrors).length > 0) {
-  //     setErrors(newErrors);
-  //     return;
-  //   }
-
-  //   setErrors({});
-
-  //   setIsLoadingUcapan(true);
-
-  //   try {
-  //     const { data, error } = await supabase
-  //       .from("wedding_mst_ucapan") // Ganti dengan nama tabel Anda di Supabase
-  //       .insert([
-  //         {
-  //           name: name.trim(),
-  //           ucapan: message.trim(),
-  //         },
-  //       ]); // Mengembalikan data yang baru saja dimasukkan (termasuk id & created_at dari database)
-  //   } catch (err) {
-  //     console.log("Gagal menyimpan ucapan:", err.message);
-  //     setErrors({ message: "Gagal mengirim pesan. Coba lagi nanti." });
-  //     return;
-  //   }
-
-  //   fetchUcapan();
-  //   setMessage("");
-  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -182,16 +145,34 @@ export default function WeddingCouple({
 
   const toggleEventSelection = (eventId: string) => {
     setSelectedEvents((prev) =>
-      prev.includes(eventId)
-        ? prev.filter((id) => id !== eventId)
-        : [...prev, eventId],
+      prev.includes(eventId) ? [] : [eventId]
     );
   };
 
-  const handleRsvpSubmit = (e: React.FormEvent) => {
+  const handleRsvpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("RSVP Data:", { selectedEvents, attendeesCount });
-    setIsRsvpModalOpen(false);
+    // console.log("RSVP Data:", { selectedEvents, attendeesCount });
+    // setIsRsvpModalOpen(false);
+    setIsLoadingRSVP(true);
+
+    try {
+      const { error } = await supabase.from("wedding_mst_rsvp").insert([
+        {
+          name: invitation,
+          rsvp: selectedEvents,
+        },
+      ]);
+
+      if (error) {
+        alert("Gagal mengirim ucapan: " + error.message);
+      } 
+    } catch (err) {
+      console.error(err);
+    } finally {
+      // 2. Matikan status loading (baik sukses maupun gagal)
+      setIsLoadingRSVP(false);
+      setSelectedEvents([]);
+    }
   };
 
   useEffect(() => {
@@ -241,6 +222,7 @@ export default function WeddingCouple({
                           ? "border-red-500"
                           : "border-gray-300 focus:border-[#6e4e42]"
                       }`}
+                      readOnly
                     />
                     {errors.name && (
                       <span className="font-viaoda-libre mt-1 text-xs text-red-500 sm:text-base">
@@ -339,7 +321,7 @@ export default function WeddingCouple({
         {/* test */}
         {/* <div className="xs:max-w-[420px] relative min-h-[350px] w-full max-w-[360px] sm:aspect-[6/5] sm:min-h-0 sm:max-w-[850px] md:min-h-[520px]"></div> */}
 
-        <div className="mt-25 w-full max-w-[850px] max-height-[500px] rounded-3xl bg-[#dbe3e6]/60 p-6 backdrop-blur-xs sm:p-10">
+        <div className="max-height-[500px] mt-25 w-full max-w-[850px] rounded-3xl bg-[#dbe3e6]/60 p-6 backdrop-blur-xs sm:p-10">
           <h3 className="font-rogue-script text-muted-brown mb-6 text-left text-3xl sm:text-4xl">
             Doa &amp; Ucapan dari undangan
           </h3>
@@ -476,10 +458,10 @@ export default function WeddingCouple({
             {/* Header Modal: Title & Tombol Close Lingkaran Krem */}
             <div className="flex items-center justify-between">
               <h3 className="font-serif text-3xl font-bold text-[#324552]">
-                RSVP
+                RSVP Kehadiran
               </h3>
               <button
-                onClick={() => setIsRsvpModalOpen(false)}
+                onClick={() => {setIsRsvpModalOpen(false); setSelectedEvents([]);}}
                 className="absolute -top-3 -right-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#b83b3b] font-sans text-sm font-bold text-white shadow-md transition-transform hover:scale-105"
               >
                 <X className="h-5 w-5" />
@@ -488,7 +470,16 @@ export default function WeddingCouple({
 
             <form onSubmit={handleRsvpSubmit} className="mt-4 text-left">
               <p className="font-serif text-sm text-gray-500">
-                Silahkan pilih acara yang akan dihadiri :
+                Apakah Anda Bisa Menghadiri :
+              </p>
+              <h4 className="font-serif text-lg font-normal text-gray-800">
+                Resepsi
+              </h4>
+              <p className="mt-0.5 font-serif text-xs tracking-widest text-gray-400 uppercase">
+                Sabtu, 21 November 2026
+              </p>
+              <p className="font-serif text-xs tracking-widest text-gray-400 uppercase">
+                13.00 - Selesai WIB
               </p>
 
               {/* List Acara Checkbox */}
@@ -517,12 +508,12 @@ export default function WeddingCouple({
                         <h4 className="font-serif text-lg font-normal text-gray-800">
                           {evt.title}
                         </h4>
-                        <p className="mt-0.5 font-serif text-xs tracking-widest text-gray-400 uppercase">
+                        {/* <p className="mt-0.5 font-serif text-xs tracking-widest text-gray-400 uppercase">
                           {evt.date}
                         </p>
                         <p className="font-serif text-xs tracking-widest text-gray-400 uppercase">
                           {evt.time}
-                        </p>
+                        </p> */}
                       </div>
                     </label>
                   );

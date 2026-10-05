@@ -11,8 +11,8 @@ const galleryImages = [
   { id: 4, src: "/IMG_9650_compress.jpg", alt: "Prewedding 2",class:"relative -translate-y-13 transition-transform duration-500 ease-in-out group-hover:scale-110" },
   { id: 5, src: "/IMG_9674_compress.jpg", alt: "Prewedding 3",class:"relative -translate-y-10 transition-transform duration-500 ease-in-out group-hover:scale-110" },
   { id: 6, src: "/IMG_9677_compress.jpg", alt: "Prewedding 4i", class:"relative -translate-y-13 transition-transform duration-500 ease-in-out group-hover:scale-110" },
-  { id: 7, src: "/5e8b454c-compress.jpg", alt: "Photobooth 1",class:"h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110" },
-  { id: 8, src: "/71c8e475-compress.jpg", alt: "Photobooth 2",class:"h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110" },
+  { id: 7, src: "/5e8b454c-compress.png", alt: "Photobooth 1",class:"h-full w-full object-cover object-[18%_center] transition-transform duration-500 ease-in-out group-hover:scale-110" },
+  { id: 8, src: "/71c8e475-compress.png", alt: "Photobooth 2",class:"h-full w-full object-cover object-[10%_center] transition-transform duration-500 ease-in-out group-hover:scale-110" },
 //   { id: 9, src: "/gallery/photo-9.jpg", alt: "Buket Mawar Peach" },
 //   { id: 10, src: "/gallery/photo-10.jpg", alt: "Pelukan Pengantin" },
 //   { id: 11, src: "/gallery/photo-11.jpg", alt: "Gaun dan Jas Pengantin" },c:\Users\ekora\Downloads\1e8666d3-eaf2-429e-877b-895534dbf0aa.png

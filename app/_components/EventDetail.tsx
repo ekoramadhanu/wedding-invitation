@@ -136,33 +136,9 @@ export default function WeddingCouple({
                     </p>
                     <p className="font-viaoda-libre text-dark-brown text-md mt-2 font-medium lg:text-lg">
                       Kandang Utara Rt.02/RW.07 <br />
-                      Ds. Olehan Kec. Situbondo. Kab. Situbondo
+                      Ds. Olean Kec. Situbondo. Kab. Situbondo
                     </p>
-                    <div className="relative z-50 mt-2 flex w-full items-center justify-center gap-3 sm:gap-4">
-                      <button
-                        type="button"
-                        className="bg-dark-brown font-viaoda-libre flex items-center justify-center gap-2 rounded-full px-5 py-2 text-sm text-white shadow-md transition hover:scale-105 active:scale-95 sm:px-6 sm:text-base"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          handleCalendarClick({
-                            eventName: "Akad Nikah",
-                            time: "10:00 s.d Selesai WIB",
-                          });
-                        }}
-                      >
-                        <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
-                        <span>Kalendar</span>
-                      </button>
-                      <button
-                        type="button"
-                        className="bg-dark-brown font-viaoda-libre flex items-center justify-center gap-2 rounded-full px-5 py-2 text-sm text-white shadow-md transition hover:scale-105 active:scale-95 sm:px-6 sm:text-base"
-                        onClick={handleLocationClick}
-                      >
-                        <MapPin className="h-4 w-4 sm:h-5 sm:w-5" />
-                        <span>Lokasi</span>
-                      </button>
-                    </div>
+                    
                   </div>
                 </div>
 
@@ -207,7 +183,7 @@ export default function WeddingCouple({
                     </p>
                     <p className="font-viaoda-libre text-dark-brown text-md mt-2 font-medium lg:text-lg">
                       Kandang Utara Rt.02/RW.07 <br />
-                      Ds. Olehan Kec. Situbondo. Kab. Situbondo
+                      Ds. Olean Kec. Situbondo. Kab. Situbondo
                     </p>
                     <div className="relative z-50 mt-2 flex w-full items-center justify-center gap-3 sm:gap-4">
                       <button
