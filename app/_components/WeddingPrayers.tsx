@@ -488,7 +488,7 @@ export default function WeddingCouple({
                   // Memastikan selectedEvents selalu dianggap array agar tidak crash
                   const isChecked =
                     Array.isArray(selectedEvents) &&
-                    selectedEvents.includes(evt.id);
+                    selectedEvents.includes(String(evt.id));
 
                   return (
                     <label
@@ -499,7 +499,7 @@ export default function WeddingCouple({
                         <input
                           type="checkbox"
                           checked={isChecked}
-                          onChange={() => toggleEventSelection(evt.id)}
+                          onChange={() => toggleEventSelection(String(evt.id))}
                           className="h-5 w-5 rounded border-gray-300 text-[#4a2e05] focus:ring-[#4a2e05]"
                           disabled={evt.isDisabled}
                         />
