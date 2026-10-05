@@ -12,9 +12,9 @@ export default function WeddingCover({
   return (
     <div className="min-h-screen w-full overflow-hidden">
       {/* FIRST TIME */}
-      <div className="relative flex min-h-screen w-full items-center justify-center bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat px-4">
+      <div className="relative flex min-h-screen w-full items-center justify-center bg-[url('/paper.png')] bg-cover bg-center bg-no-repeat px-4" >
         {/* FRAME CONTAINER */}
-        <div className="relative aspect-[630/555] w-full max-w-[630px]">
+        <div className="relative aspect-[630/555] w-full max-w-[630px]" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
           {/* FRAME */}
           <div className="pointer-events-none absolute inset-0 z-10 bg-[url('/cover-frame.png')] bg-contain bg-center bg-no-repeat" />
 
@@ -23,20 +23,20 @@ export default function WeddingCover({
 
           {/* CONTENT */}
           <div className="absolute inset-0 z-40 flex flex-col items-center justify-center px-[25%]">
-            <p className="font-viaoda-libre text-dark-brown mb-2 text-center text-xs font-thin sm:mb-4 sm:text-lg md:text-2xl">
+            <p className="font-viaoda-libre text-dark-brown mb-2 text-center text-xs font-thin sm:mb-4 sm:text-lg md:text-2xl" data-aos="zoom-in" data-aos-delay="500">
               you are invited to our wedding
             </p>
 
-            <p className="font-rogue-script text-dark-brown mb-2 px-2 text-center text-4xl font-light sm:text-5xl md:text-6xl">
+            <p className="font-rogue-script text-dark-brown mb-2 px-2 text-center text-4xl font-light sm:text-5xl md:text-6xl" data-aos="zoom-in" data-aos-delay="500">
               Eko & Susan
             </p>
 
-            <p className="font-viaoda-libre text-dark-brown text-center text-sm font-normal sm:text-lg md:text-2xl">
+            <p className="font-viaoda-libre text-dark-brown text-center text-sm font-normal sm:text-lg md:text-2xl" data-aos="zoom-in" data-aos-delay="500">
               Sabtu, 21 November 2026
             </p>
 
             {/* RECIPIENT */}
-            <div className="font-viaoda-libre my-2 flex w-full max-w-[280px] flex-col items-center rounded-xl bg-white px-3 py-2 sm:my-5">
+            <div className="font-viaoda-libre my-2 flex w-full max-w-[280px] flex-col items-center rounded-xl bg-white px-3 py-2 sm:my-5" data-aos="zoom-in" data-aos-delay="500">
               <p className="text-dark-brown text-xs sm:text-sm">Kepada Yth.</p>
 
               <p className="text-dark-brown text-xs sm:text-sm">
@@ -64,6 +64,8 @@ export default function WeddingCover({
               type="button"
               onClick={onOpen}
               className="bg-dark-brown font-viaoda-libre relative z-50  items-center gap-2 rounded-full px-6 py-2 text-lg text-white shadow-md transition hover:scale-105 active:scale-95 flex"
+              data-aos="zoom-in"
+              data-aos-delay="500"
             >
               <Mail size={22} strokeWidth={1.5} className="mx-1" />
               <span className="hidden md:flex"> Buka Undangan </span>

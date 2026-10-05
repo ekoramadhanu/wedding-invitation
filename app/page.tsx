@@ -4,6 +4,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import WeddingCover from "./_components/WeddingCover";
+import AOSInit from "./_components/AOSInit";
 import LandingPage, {
   LandingPageRef,
 } from "./_components/LandingPage";
@@ -61,6 +62,7 @@ function WeddingPage() {
 
   return (
     <>
+      <AOSInit />
       <div className={isOpen ? "hidden" : "block"}>
         <WeddingCover
           invitation={invitation}
