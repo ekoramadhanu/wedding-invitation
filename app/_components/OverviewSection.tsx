@@ -33,14 +33,14 @@ export default function OverviewSection({
     <section ref={overviewRef}>
       <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4">
         {/* SNOW */}
-        <div className="pointer-events-none absolute inset-0 z-[999] overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 z-[999] overflow-hidden" >
           {snowflakes.map((snow) => (
             <span
               key={snow.id}
               className="snowflake"
               style={{
                 left: `${snow.left}%`,
-                animationDelay: `${snow.delay}s`,
+                animationDelay: `${snow.delay + 2}s`,
                 animationDuration: `${snow.duration}s`,
                 width: `${snow.size}px`,
                 height: `${snow.size}px`,
@@ -74,13 +74,24 @@ export default function OverviewSection({
         {/* FRAME CONTAINER */}
         <div className="relative aspect-[630/555] w-full max-w-[630px]">
           {/* FRAME */}
-          <div className="pointer-events-none absolute inset-0 z-10 bg-[url('/cover-frame.png')] bg-contain bg-center bg-no-repeat" />
+          <div
+            className="pointer-events-none absolute inset-0 z-10 bg-[url('/cover-frame.png')] bg-contain bg-center bg-no-repeat"
+            data-aos="zoom-out"
+          />
 
           {/* FLOWER KIRI ATAS */}
-          <div className="pointer-events-none absolute top-[-8%] left-[-5%] z-20 aspect-[279/443] w-[55%] bg-[url('/cover-flower.png')] bg-contain bg-left-top bg-no-repeat" />
+          <div
+            className="pointer-events-none absolute top-[-8%] left-[-5%] z-20 aspect-[279/443] w-[55%] bg-[url('/cover-flower.png')] bg-contain bg-left-top bg-no-repeat"
+            data-aos="zoom-out"
+            data-aos-delay="1500"
+          />
 
           {/* CONTENT */}
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-[25%]">
+          <div
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center px-[25%]"
+            data-aos="fade-left"
+            data-aos-delay="600"
+          >
             <p className="font-viaoda-libre text-dark-brown mb-4 text-center text-xs font-thin sm:mb-4 sm:text-lg md:text-2xl">
               We are getting married
             </p>
@@ -145,7 +156,11 @@ export default function OverviewSection({
           </div>
 
           {/* FLOWER KANAN BAWAH */}
-          <div className="pointer-events-none absolute right-[-5%] bottom-[-14%] z-20 aspect-[279/443] w-[55%] bg-[url('/cover-flower-2.png')] bg-contain bg-right-bottom bg-no-repeat" />
+          <div
+            className="pointer-events-none absolute right-[-5%] bottom-[-14%] z-20 aspect-[279/443] w-[55%] bg-[url('/cover-flower-2.png')] bg-contain bg-right-bottom bg-no-repeat"
+            data-aos="zoom-out"
+            data-aos-delay="1500"
+          />
         </div>
       </div>
     </section>

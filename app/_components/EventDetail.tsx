@@ -94,7 +94,7 @@ export default function WeddingCouple({
         {/* CONTENT */}
         <div className="relative z-10 flex h-full w-full flex-col items-center">
           {/* JUDUL */}
-          <p className="font-rogue-script text-muted-brown text-center text-5xl font-light md:text-6xl">
+          <p className="font-rogue-script text-muted-brown text-center text-5xl font-light md:text-6xl" >
             Detail Acara
           </p>
 

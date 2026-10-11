@@ -51,7 +51,7 @@ const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
       }));
     }, []);
     const [currentBackground, setCurrentBackground] = useState(0);
-    const backgrounds = ["/DSC_0704.jpg", "/DSC_0708.jpg", "/IMG_9650.JPG"];
+    const backgrounds = ["/DSC_0704_Compress.jpg", "/DSC_0708_compress.jpg"];
     const overviewRef = useRef<HTMLElement>(null);
     const weddingCoupleRef = useRef<HTMLElement>(null);
     const eventDetailRef = useRef<HTMLElement>(null);
