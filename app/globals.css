@@ -81,3 +81,28 @@
   will-change: transform;
 }
 
+@keyframes slide-left {
+  from {
+    transform: translateX(40px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-40px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-left {
+  animation: slide-left 0.35s ease-in-out;
+}
+
+.animate-slide-right {
+  animation: slide-right 0.35s ease-in-out;
+}

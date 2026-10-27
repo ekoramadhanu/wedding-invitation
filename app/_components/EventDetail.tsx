@@ -57,7 +57,8 @@ export default function WeddingCouple({
   // Fungsi untuk Tombol Lokasi
   const handleLocationClick = () => {
     // const link= "https://www.google.com/maps/place/Masjid+Al+Ikhlas/@-7.6645507,114.0027885,17z/data=!4m6!3m5!1s0x2dd72ed94e985901:0x76ca118691a9e858!8m2!3d-7.664551!4d114.0061589!16s%2Fg%2F11f5j2d1p2?entry=tts&g_ep=EgoyMDI2MDgxOS4wIPu8ASoASAFQAw%3D%3D&skid=2abc972c-12a7-4ed8-b15c-6198cb22b55b"
-    const link= "https://www.google.com/maps/dir/?api=1&destination=Masjid+Al+Ikhlas+Olehan+Situbondo&-7.664551,114.0061589"
+    const link =
+      "https://www.google.com/maps/dir/?api=1&destination=Masjid+Al+Ikhlas+Olehan+Situbondo&-7.664551,114.0061589";
     window.open(link, "_blank");
   };
 
@@ -84,17 +85,23 @@ export default function WeddingCouple({
   return (
     <section
       ref={eventDetailRef}
-      className="relative flex min-h-screen w-full flex-col items-center justify-start bg-light-gray bg-[url('/paper.png')] bg-cover bg-center px-4 pt-8 pb-20 min-[1921px]:justify-center"
+      className="bg-light-gray relative flex min-h-screen w-full flex-col items-center justify-start bg-[url('/paper.png')] bg-cover bg-center px-4 pt-8 pb-20 min-[1921px]:justify-center"
     >
       {/* KONTAINER UTAMA */}
       <div className="relative flex w-full max-w-[1100px] flex-col items-center md:mt-14">
         {/* BACKGROUND BINGKAI BUNGA (Aman & Tidak Terpotong) */}
-        <div className="pointer-events-none absolute md:top-[47%] left-1/2 hidden aspect-[900/555] w-[95vw] max-w-[950px] -translate-x-1/2 bg-[url('/event-bg.png')] bg-contain bg-top bg-no-repeat md:[@media(min-height:700px)]:block" />
+        <div
+          className="pointer-events-none absolute left-1/2 hidden aspect-[900/555] w-[95vw] max-w-[950px] -translate-x-1/2 bg-[url('/event-bg.png')] bg-contain bg-top bg-no-repeat md:top-[47%] md:[@media(min-height:700px)]:block"
+          data-aos="fade-up"
+        />
 
         {/* CONTENT */}
         <div className="relative z-10 flex h-full w-full flex-col items-center">
           {/* JUDUL */}
-          <p className="font-rogue-script text-muted-brown text-center text-5xl font-light md:text-6xl" >
+          <p
+            className="font-rogue-script text-muted-brown text-center text-5xl font-light md:text-6xl"
+            data-aos="zoom-out"
+          >
             Detail Acara
           </p>
 
@@ -104,22 +111,30 @@ export default function WeddingCouple({
             <div className="col-span-12 flex justify-center sm:col-span-6 md:justify-start">
               <div className="relative flex aspect-[4/3.6] w-full max-w-[400px] items-center justify-center lg:aspect-[4/3.3]">
                 {/* SVG OUTLINE */}
-                <svg
-                  viewBox="0 0 100 120"
-                  preserveAspectRatio="none"
-                  className="pointer-events-none absolute -inset-2 z-20 h-[calc(100%+16px)] w-[calc(100%+16px)]"
+                <div
+                  className="pointer-events-none absolute -inset-2 z-20"
+                  data-aos="fade-right"
                 >
-                  <polygon
-                    points="50 1 90 30 90 90 50 119 10 90 10 30"
-                    fill="none"
-                    stroke="#ad9785"
-                    strokeWidth="0.6"
-                  />
-                </svg>
+                  <svg
+                    viewBox="0 0 100 120"
+                    preserveAspectRatio="none"
+                    className="block h-full w-full"
+                  >
+                    <polygon
+                      points="50 1 90 30 90 90 50 119 10 90 10 30"
+                      fill="none"
+                      stroke="#ad9785"
+                      strokeWidth="0.6"
+                    />
+                  </svg>
+                </div>
 
                 {/* HEKSAGON BELAKANG */}
-                <div className="relative z-10 flex h-[90%] w-[90%] items-center justify-center bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
-                  <div className="absolute inset-[1.5px] flex flex-col items-center justify-start bg-light-gray p-4 text-center [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
+                <div
+                  className="relative z-10 flex h-[90%] w-[90%] items-center justify-center bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]"
+                  data-aos="fade-right"
+                >
+                  <div className="bg-light-gray absolute inset-[1.5px] flex flex-col items-center justify-start p-4 text-center [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
                     {/* ISIAN KONTEN AKAD */}
                     <h3 className="font-rogue-script text-dark-brown mt-2 text-3xl lg:text-5xl">
                       Akad Nikah
@@ -138,12 +153,15 @@ export default function WeddingCouple({
                       Kandang Utara Rt.02/RW.07 <br />
                       Ds. Olean Kec. Situbondo. Kab. Situbondo
                     </p>
-                    
                   </div>
                 </div>
 
                 {/* GAMBAR BUNGA */}
-                <div className="pointer-events-none absolute right-[15%] -bottom-[15%] z-11 h-[70%] w-[65%] bg-[url('/event-flower.png')] bg-contain bg-bottom bg-no-repeat" />
+                <div
+                  className="pointer-events-none absolute right-[15%] -bottom-[15%] z-11 h-[70%] w-[65%] bg-[url('/event-flower.png')] bg-contain bg-bottom bg-no-repeat"
+                  data-aos="zoom-out"
+                  data-aos-delay="600"
+                />
               </div>
             </div>
 
@@ -151,22 +169,29 @@ export default function WeddingCouple({
             <div className="col-span-12 flex justify-center sm:col-span-6 md:justify-end">
               <div className="relative flex aspect-[4/3.6] w-full max-w-[400px] items-center justify-center lg:aspect-[4/3.3]">
                 {/* SVG OUTLINE */}
-                <svg
-                  viewBox="0 0 100 120"
-                  preserveAspectRatio="none"
-                  className="pointer-events-none absolute -inset-2 z-20 h-[calc(100%+16px)] w-[calc(100%+16px)]"
+                <div
+                  data-aos="fade-left"
+                  className="pointer-events-none absolute -inset-2 z-20"
                 >
-                  <polygon
-                    points="50 1 90 30 90 90 50 119 10 90 10 30"
-                    fill="none"
-                    stroke="#ad9785"
-                    strokeWidth="0.6"
-                  />
-                </svg>
-
+                  <svg
+                    viewBox="0 0 100 120"
+                    preserveAspectRatio="none"
+                    className="block h-full w-full"
+                  >
+                    <polygon
+                      points="50 1 90 30 90 90 50 119 10 90 10 30"
+                      fill="none"
+                      stroke="#ad9785"
+                      strokeWidth="0.6"
+                    />
+                  </svg>
+                </div>
                 {/* HEKSAGON BELAKANG */}
-                <div className="relative z-10 flex h-[90%] w-[90%] items-center justify-center bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
-                  <div className="absolute inset-[1.5px] flex flex-col items-center justify-start bg-light-gray p-4 text-center [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
+                <div
+                  className="relative z-10 flex h-[90%] w-[90%] items-center justify-center bg-gradient-to-r from-[#BF9D82] to-[#FAD4AF] [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]"
+                  data-aos="fade-left"
+                >
+                  <div className="bg-light-gray absolute inset-[1.5px] flex flex-col items-center justify-start p-4 text-center [clip-path:polygon(13%_0,86%_0,100%_50%,87%_100%,14%_100%,0%_50%)]">
                     {/* ISIAN KONTEN AKAD */}
                     <h3 className="font-rogue-script text-dark-brown mt-2 text-3xl lg:text-5xl">
                       Resepsi
@@ -214,7 +239,11 @@ export default function WeddingCouple({
                 </div>
 
                 {/* GAMBAR BUNGA */}
-                <div className="pointer-events-none absolute right-[15%] -bottom-[15%] z-11 h-[70%] w-[65%] bg-[url('/event-flower.png')] bg-contain bg-bottom bg-no-repeat" />
+                <div
+                  className="pointer-events-none absolute right-[15%] -bottom-[15%] z-11 h-[70%] w-[65%] bg-[url('/event-flower.png')] bg-contain bg-bottom bg-no-repeat"
+                  data-aos="zoom-out"
+                  data-aos-delay="600"
+                />
               </div>
             </div>
           </div>

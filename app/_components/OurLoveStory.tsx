@@ -48,50 +48,106 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
         "Setelah perjalanan yang kami lalui, InsyaAllah kami akan melangkah menuju ikatan suci pernikahan pada November 2026. Semoga menjadi awal perjalanan panjang yang penuh cinta, keberkahan, dan ridha Allah SWT.",
     },
   ];
+
   const sliderRef = useRef<HTMLDivElement>(null);
   const [stories, setStories] = useState<StoryItem[]>(initialStories);
   const [activeIndex, setActiveIndex] = useState(0);
-
   const [visibleCount, setVisibleCount] = useState(3);
+  const [cardStep, setCardStep] = useState(276);
+  const [slideX, setSlideX] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState<"left" | "right" | null>(null);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
 
   useEffect(() => {
-    const handleResize = () => {
+    const updateSize = () => {
       if (window.innerWidth < 860) {
-        setVisibleCount(1); // HP: 1 kartu
+        setVisibleCount(1);
       } else if (window.innerWidth <= 1024) {
-        setVisibleCount(2); // Tablet: 2 kartu
+        setVisibleCount(2);
       } else {
-        setVisibleCount(3); // Desktop: 3 kartu
+        setVisibleCount(3);
+      }
+
+      const slider = sliderRef.current;
+      const card = slider?.children[0] as HTMLElement | undefined;
+
+      if (slider && card) {
+        const gap = parseFloat(getComputedStyle(slider).columnGap) || 0;
+        const margin =
+          parseFloat(getComputedStyle(card).marginLeft) +
+          parseFloat(getComputedStyle(card).marginRight);
+
+        setCardStep(card.getBoundingClientRect().width + gap + margin);
       }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
   }, []);
 
   const handleScrollRight = () => {
-    setStories((prevStories) => {
-      const updated = [...prevStories];
-      const firstItem = updated.shift();
-      if (firstItem) updated.push(firstItem);
-      return updated;
-    });
+    if (isAnimating) return;
 
-    setActiveIndex((prev) => (prev + 1) % initialStories.length);
+    setDirection("right");
+    setIsAnimating(true);
+    setSlideX(-cardStep);
   };
 
   const handleScrollLeft = () => {
-    setStories((prevStories) => {
-      const updated = [...prevStories];
-      const lastItem = updated.pop();
-      if (lastItem) updated.unshift(lastItem);
+    if (isAnimating) return;
+
+    setDirection("left");
+
+    // Siapkan kartu sebelumnya tanpa animasi
+    setTransitionEnabled(false);
+    setStories((prev) => {
+      const updated = [...prev];
+      const last = updated.pop();
+      if (last) updated.unshift(last);
       return updated;
     });
 
-    setActiveIndex(
-      (prev) => (prev - 1 + initialStories.length) % initialStories.length,
-    );
+    setSlideX(-cardStep);
+    setIsAnimating(true);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setTransitionEnabled(true);
+        setSlideX(0);
+      });
+    });
+  };
+
+  const handleSlideTransitionEnd = () => {
+    if (!isAnimating) return;
+
+    if (direction === "right") {
+      // Matikan transisi untuk reset posisi
+      setTransitionEnabled(false);
+
+      setStories((prev) => {
+        const updated = [...prev];
+        const first = updated.shift();
+        if (first) updated.push(first);
+        return updated;
+      });
+
+      setSlideX(0);
+      setActiveIndex((prev) => (prev + 1) % initialStories.length);
+    } else if (direction === "left") {
+      setActiveIndex(
+        (prev) => (prev - 1 + initialStories.length) % initialStories.length,
+      );
+    }
+
+    // Aktifkan kembali transisi setelah reset posisi diterapkan
+    requestAnimationFrame(() => {
+      setTransitionEnabled(true);
+      setDirection(null);
+      setIsAnimating(false);
+    });
   };
 
   return (
@@ -122,7 +178,13 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
               {/* Berikan px-6 di sini agar bunga di kartu pertama/terakhir tidak terpotong atau ke-expose di batas luar */}
               <div
                 ref={sliderRef}
-                className="flex items-center justify-center gap-4 px-6 sm:gap-6"
+                onTransitionEnd={handleSlideTransitionEnd}
+                className={`flex w-max items-center justify-start gap-4 px-6 sm:gap-6 ${
+                  transitionEnabled
+                    ? "transition-transform duration-500 ease-in-out"
+                    : ""
+                }`}
+                style={{ transform: `translateX(${slideX}px)` }}
               >
                 {stories.slice(0, visibleCount).map((item, index) => (
                   <div
