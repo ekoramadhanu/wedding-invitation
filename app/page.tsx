@@ -8,6 +8,8 @@ import AOSInit from "./_components/AOSInit";
 import LandingPage, {
   LandingPageRef,
 } from "./_components/LandingPage";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function WeddingPage() {
   const searchParams = useSearchParams();
@@ -15,21 +17,16 @@ function WeddingPage() {
   const invitation =
     searchParams.get("invitation") || "Wedding Invitation";
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const landingPageRef = useRef<LandingPageRef>(null);
 
   const isGuardActive = useRef(false);
 
   const handleOpenInvitation = async () => {
-    console.log("1. BUTTON CLICKED");
 
     await landingPageRef.current?.playMusic();
 
-    console.log("2. PLAY MUSIC DONE");
-
     setIsOpen(true);
-
-    console.log("3. IS OPEN SET");
 
     isGuardActive.current = true;
 
@@ -40,12 +37,15 @@ function WeddingPage() {
       "",
       window.location.href
     );
-
-    console.log("4. HISTORY PUSHED");
   };
 
   useEffect(() => {
     if (!isOpen) return;
+
+    const timer = setTimeout(() => {
+      AOS.refreshHard();
+      AOS.refresh();
+    }, 500);
 
     const handlePopState = () => {
       if (!isGuardActive.current) return;
@@ -56,6 +56,7 @@ function WeddingPage() {
     window.addEventListener("popstate", handlePopState);
 
     return () => {
+      clearTimeout(timer);
       window.removeEventListener("popstate", handlePopState);
     };
   }, [isOpen]);
@@ -71,7 +72,7 @@ function WeddingPage() {
       </div>
 
       <div className={isOpen ? "block" : "hidden"}>
-        <LandingPage ref={landingPageRef} invitation={invitation}/>
+        <LandingPage ref={landingPageRef} invitation={invitation} />
       </div>
     </>
   );
