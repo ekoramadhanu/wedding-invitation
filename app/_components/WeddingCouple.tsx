@@ -14,7 +14,7 @@ export default function WeddingCouple({
     >
       {/* TITLE */}
       <div className="flex justify-center">
-        <div className="flex max-w-[800px] flex-col py-10">
+        <div className="flex max-w-[900px] flex-col py-10">
           <p className="font-viaoda-libre text-muted-brown mt-6 mb-12 px-8 text-center text-base md:text-xl" data-aos="zoom-out">
             QS. Ar-Rum : 21 <br />
             "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan

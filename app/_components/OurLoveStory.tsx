@@ -157,7 +157,7 @@ export default function OurLoveStory({ ourLoveStoryRef }: OurLoveStoryProps) {
     >
       <div className="flex w-full max-w-[1200px] flex-1 flex-col items-center justify-center px-4">
         {/* Judul Utama */}
-        <h2 className="font-rogue-script text-muted-brown text-center text-5xl font-light sm:text-6xl">
+        <h2 className="font-rogue-script text-muted-brown text-center text-5xl font-light sm:text-6xl" data-aos="zoom-out">
           Our Love Story
         </h2>
 

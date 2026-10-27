@@ -165,7 +165,7 @@ export default function WeddingCouple({
 
       if (error) {
         alert("Gagal mengirim ucapan: " + error.message);
-      } 
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -185,7 +185,7 @@ export default function WeddingCouple({
       className="relative flex min-h-screen w-full flex-col items-center justify-start bg-[url('/paper.png')] bg-cover bg-center px-4 pt-8 pb-20 min-[1921px]:justify-center"
     >
       <div className="flex w-full max-w-[1200px] flex-1 flex-col items-center justify-center px-4">
-        <h2 className="font-rogue-script text-muted-brown mb-8 text-center text-5xl font-light sm:text-6xl">
+        <h2 className="font-rogue-script text-muted-brown mb-8 text-center text-5xl font-light sm:text-6xl" data-aos="zoom-out">
           Doa &amp; Ucapan
         </h2>
 
@@ -193,11 +193,11 @@ export default function WeddingCouple({
 
         <div className="relative flex aspect-[4/3.6] w-full max-w-[850px] items-center justify-center lg:aspect-[4/3.3]">
           {/* 1. LAYER BASE: HEXAGON SEGI-6 */}
-          <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]">
+          <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]" data-aos="flip-left" >
             {/* INNER WHITE CONTENT AREA */}
-            <div className="flex h-full w-full justify-center bg-white px-10 py-8 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)] md:px-25">
+            <div className="flex h-full w-full justify-center bg-white px-10 py-8 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)] md:px-25" data-aos="flip-left">
               {/* WRAPPER KONTEN */}
-              <div className="flex w-full max-w-[250px] flex-col justify-around md:max-w-[600px]">
+              <div className="flex w-full max-w-[250px] flex-col justify-around md:max-w-[600px]" >
                 {/* FORM INPUT */}
                 <form
                   onSubmit={handleSubmit}
@@ -217,11 +217,10 @@ export default function WeddingCouple({
                         if (errors.name)
                           setErrors((prev) => ({ ...prev, name: undefined }));
                       }}
-                      className={`font-viaoda-libre text-muted-brown w-full border-b bg-transparent py-0.5 text-base font-normal focus:outline-none sm:py-1 sm:text-xl ${
-                        errors.name
-                          ? "border-red-500"
-                          : "border-gray-300 focus:border-[#6e4e42]"
-                      }`}
+                      className={`font-viaoda-libre text-muted-brown w-full border-b bg-transparent py-0.5 text-base font-normal focus:outline-none sm:py-1 sm:text-xl ${errors.name
+                        ? "border-red-500"
+                        : "border-gray-300 focus:border-[#6e4e42]"
+                        }`}
                       readOnly
                     />
                     {errors.name && (
@@ -248,11 +247,10 @@ export default function WeddingCouple({
                           }));
                       }}
                       /* h-[24px] untuk 1 baris di HP, md:h-[56px] untuk 2 baris di MD ke atas */
-                      className={`font-viaoda-libre text-muted-brown h-[24px] w-full resize-none border-none bg-transparent bg-[linear-gradient(transparent_23px,#d1d5db_1px)] bg-[size:100%_24px] text-base leading-[24px] focus:outline-none sm:bg-[linear-gradient(transparent_27px,#d1d5db_1px)] sm:bg-[size:100%_28px] sm:text-xl sm:leading-[28px] md:h-[56px] ${
-                        errors.message
-                          ? "bg-[linear-gradient(transparent_23px,#ef4444_1px)] sm:bg-[linear-gradient(transparent_27px,#ef4444_1px)]"
-                          : ""
-                      }`}
+                      className={`font-viaoda-libre text-muted-brown h-[24px] w-full resize-none border-none bg-transparent bg-[linear-gradient(transparent_23px,#d1d5db_1px)] bg-[size:100%_24px] text-base leading-[24px] focus:outline-none sm:bg-[linear-gradient(transparent_27px,#d1d5db_1px)] sm:bg-[size:100%_28px] sm:text-xl sm:leading-[28px] md:h-[56px] ${errors.message
+                        ? "bg-[linear-gradient(transparent_23px,#ef4444_1px)] sm:bg-[linear-gradient(transparent_27px,#ef4444_1px)]"
+                        : ""
+                        }`}
                     />
                     {errors.message && (
                       <span className="font-viaoda-libre mt-1 text-xs text-red-500 sm:text-base">
@@ -321,7 +319,7 @@ export default function WeddingCouple({
         {/* test */}
         {/* <div className="xs:max-w-[420px] relative min-h-[350px] w-full max-w-[360px] sm:aspect-[6/5] sm:min-h-0 sm:max-w-[850px] md:min-h-[520px]"></div> */}
 
-        <div className="max-height-[500px] mt-25 w-full max-w-[850px] rounded-3xl bg-[#dbe3e6]/60 p-6 backdrop-blur-xs sm:p-10">
+        <div className="max-height-[500px] mt-25 w-full max-w-[850px] rounded-3xl bg-[#dbe3e6]/60 p-6 backdrop-blur-xs sm:p-10" data-aos="flip-left">
           <h3 className="font-rogue-script text-muted-brown mb-6 text-left text-3xl sm:text-4xl">
             Doa &amp; Ucapan dari undangan
           </h3>
@@ -461,7 +459,7 @@ export default function WeddingCouple({
                 RSVP Kehadiran
               </h3>
               <button
-                onClick={() => {setIsRsvpModalOpen(false); setSelectedEvents([]);}}
+                onClick={() => { setIsRsvpModalOpen(false); setSelectedEvents([]); }}
                 className="absolute -top-3 -right-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#b83b3b] font-sans text-sm font-bold text-white shadow-md transition-transform hover:scale-105"
               >
                 <X className="h-5 w-5" />

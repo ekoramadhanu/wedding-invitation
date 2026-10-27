@@ -91,7 +91,7 @@ export default function WeddingCouple({
       <div className="relative flex w-full max-w-[1100px] flex-col items-center md:mt-14">
         {/* BACKGROUND BINGKAI BUNGA (Aman & Tidak Terpotong) */}
         <div
-          className="pointer-events-none absolute left-1/2 hidden aspect-[900/555] w-[95vw] max-w-[950px] -translate-x-1/2 bg-[url('/event-bg.png')] bg-contain bg-top bg-no-repeat md:top-[47%] md:[@media(min-height:700px)]:block"
+          className="pointer-events-none absolute left-1/2 hidden aspect-[900/555] w-[95vw] max-w-[950px] -translate-x-1/2 bg-[url('/event-bg.png')] bg-contain bg-top bg-no-repeat md:top-[40%] md:[@media(min-height:700px)]:block"
           data-aos="fade-up"
         />
 
@@ -109,7 +109,7 @@ export default function WeddingCouple({
           <div className="max-h mt-12 grid h-full w-full grid-cols-12 gap-y-16 md:mt-28 md:gap-x-8 md:gap-y-0">
             {/* ==================== 1. PRIA ==================== */}
             <div className="col-span-12 flex justify-center sm:col-span-6 md:justify-start">
-              <div className="relative flex aspect-[4/3.6] w-full max-w-[400px] items-center justify-center lg:aspect-[4/3.3]">
+              <div className="relative flex aspect-[4.5/3.6] w-full max-w-[450px] items-center justify-center lg:aspect-[4/3.3]">
                 {/* SVG OUTLINE */}
                 <div
                   className="pointer-events-none absolute -inset-2 z-20"
@@ -167,7 +167,7 @@ export default function WeddingCouple({
 
             {/* ==================== 2. WANITA ==================== */}
             <div className="col-span-12 flex justify-center sm:col-span-6 md:justify-end">
-              <div className="relative flex aspect-[4/3.6] w-full max-w-[400px] items-center justify-center lg:aspect-[4/3.3]">
+              <div className="relative flex aspect-[4/3.6] w-full max-w-[450px] items-center justify-center lg:aspect-[4/3.3]">
                 {/* SVG OUTLINE */}
                 <div
                   data-aos="fade-left"
