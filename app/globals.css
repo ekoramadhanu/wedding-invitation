@@ -106,3 +106,15 @@
 .animate-slide-right {
   animation: slide-right 0.35s ease-in-out;
 }
+
+/* Pastikan tombol fixed tidak terpengaruh animasi AOS */
+body > button {
+  position: fixed;
+}
+
+/* Hindari horizontal overflow */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}

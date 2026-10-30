@@ -200,9 +200,9 @@ export default function WeddingCouple({
 
         <div className="relative flex aspect-[4/3.6] w-full max-w-[850px] items-center justify-center lg:aspect-[4/3.3]">
           {/* 1. LAYER BASE: HEXAGON SEGI-6 */}
-          <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]" data-aos="zoom-out" >
+          <div className="relative z-10 h-full w-full bg-gradient-to-r from-[#bf9d82] to-[#fad4af] p-[2px] shadow-sm [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)]" data-aos="fade-up" >
             {/* INNER WHITE CONTENT AREA */}
-            <div className="flex h-full w-full justify-center bg-white px-10 py-8 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)] md:px-25" data-aos="zoom-out">
+            <div className="flex h-full w-full justify-center bg-white px-10 py-8 [clip-path:polygon(12%_0,88%_0,100%_50%,88%_100%,12%_100%,0%_50%)] sm:px-16 sm:py-12 sm:[clip-path:polygon(14%_0,86%_0,100%_50%,87%_100%,13%_100%,0%_50%)] md:px-25" data-aos="fade-up">
               {/* WRAPPER KONTEN */}
               <div className="flex w-full max-w-[250px] flex-col justify-around md:max-w-[600px]" >
                 {/* FORM INPUT */}

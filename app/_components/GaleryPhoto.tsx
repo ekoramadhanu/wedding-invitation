@@ -25,7 +25,7 @@ export default function GaleryPhoto({ GaleryPhotoRef }: GaleryPhotoProps) {
       ref={GaleryPhotoRef}
       className="bg-light-gray flex min-h-screen w-full flex-col items-center justify-center bg-[url('/paper.png')] py-12 overflow-hidden"
     >
-      <div className="flex w-full max-w-[1200px] flex-1 flex-col items-center justify-center px-4">
+      <div className="flex w-full flex-1 flex-col items-center justify-center px-4">
         {/* Judul Utama */}
         <h2 className="font-rogue-script text-muted-brown text-center text-5xl font-light sm:text-6xl mb-10" data-aos="zoom-out">
           Photo galery

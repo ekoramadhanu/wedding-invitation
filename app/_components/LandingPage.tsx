@@ -14,6 +14,7 @@ import {
   useState,
   useMemo,
 } from "react";
+import { createPortal } from "react-dom";
 
 export type LandingPageRef = {
   playMusic: () => Promise<void>;
@@ -21,14 +22,15 @@ export type LandingPageRef = {
 
 interface LandingPageProps {
   invitation: string;
+  audio: HTMLAudioElement | null;
 }
 
 const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
-  function LandingPage({ invitation }, ref) {
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+  function LandingPage({ invitation, audio }, ref) {
 
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
     const [isReady, setIsReady] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const [timeLeft, setTimeLeft] = useState({
       hari: "00",
       jam: "00",
@@ -60,18 +62,7 @@ const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
     const WeddingPrayersRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
-      // =========================
-      // MUSIC
-      // =========================
-      const audio = new Audio(
-        "/music/Glenn_Madeiro_-_Nothing_s_Gonna_Change_My_Love_For_You_(mp3.pm).mp3",
-      );
-
-      audio.loop = true;
-      audio.volume = 0.5;
-
-      audioRef.current = audio;
-
+      setMounted(true);
       // =========================
       // COUNTDOWN
       // =========================
@@ -130,21 +121,13 @@ const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
         clearInterval(timer);
         clearInterval(backgroundTimer);
 
-        audio.pause();
-        audio.src = "";
-        audioRef.current = null;
       };
     }, []);
 
     // Fungsi ini bisa dipanggil dari page.jsx
     useImperativeHandle(ref, () => ({
       playMusic: async () => {
-        const audio = audioRef.current;
-
-        if (!audio) {
-          console.log("Audio belum siap");
-          return;
-        }
+        if (!audio) return;
 
         try {
           await audio.play();
@@ -156,8 +139,6 @@ const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
     }));
 
     const toggleMusic = async () => {
-      const audio = audioRef.current;
-
       if (!audio) return;
 
       if (audio.paused) {
@@ -174,35 +155,66 @@ const LandingPage = forwardRef<LandingPageRef, LandingPageProps>(
     };
 
     return (
-      <div>
-        <OverviewSection
-          overviewRef={overviewRef}
-          snowflakes={snowflakes}
-          backgrounds={backgrounds}
-          currentBackground={currentBackground}
-          timeLeft={timeLeft}
-        />
-        <WeddingCouple weddingCoupleRef={weddingCoupleRef} />
-        <EventDetail eventDetailRef={eventDetailRef} invitation={invitation}  />
-        <OurLoveStory ourLoveStoryRef={ourLoveStoryRef}  />
-        <GaleryPhoto GaleryPhotoRef={GaleryPhotoRef}  />
-        <WeddingPrayers WeddingPrayersRef={WeddingPrayersRef} invitation={invitation}  />
+      <>
+        <div>
+          <OverviewSection
+            overviewRef={overviewRef}
+            snowflakes={snowflakes}
+            backgrounds={backgrounds}
+            currentBackground={currentBackground}
+            timeLeft={timeLeft}
+          />
 
-        
+          <WeddingCouple weddingCoupleRef={weddingCoupleRef} />
+          <EventDetail eventDetailRef={eventDetailRef} invitation={invitation} />
+          <OurLoveStory ourLoveStoryRef={ourLoveStoryRef} />
+          <GaleryPhoto GaleryPhotoRef={GaleryPhotoRef} />
+          <WeddingPrayers WeddingPrayersRef={WeddingPrayersRef} invitation={invitation} />
+        </div>
 
-        <button
-          type="button"
-          onClick={toggleMusic}
-          aria-label={isPlaying ? "Pause music" : "Play music"}
-          className="bg-olive-gray fixed right-5 bottom-5 z-50 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition hover:scale-105 active:scale-95"
-        >
-          {isPlaying ? (
-            <Pause size={20} className="fill-white text-white" />
-          ) : (
-            <Play size={20} className="fill-white text-white" />
+        {mounted &&
+          createPortal(
+            <button
+              type="button"
+              onClick={toggleMusic}
+              aria-label={isPlaying ? "Pause music" : "Play music"}
+              className="
+                !fixed
+                !right-[max(16px,env(safe-area-inset-right))]
+                !bottom-[max(24px,env(safe-area-inset-bottom))]
+                !left-auto
+                !top-auto
+                z-[999999]
+                flex h-12 w-12
+                shrink-0
+                items-center justify-center
+                rounded-full
+                bg-olive-gray
+                text-white
+                shadow-lg
+                transition-transform
+                hover:scale-105
+                active:scale-95
+              "
+              style={{
+                position: "fixed",
+                right: "max(16px, env(safe-area-inset-right))",
+                bottom: "max(24px, env(safe-area-inset-bottom))",
+                left: "auto",
+                top: "auto",
+                transform: "none",
+                margin: 0,
+              }}
+            >
+              {isPlaying ? (
+                <Pause size={20} className="fill-white text-white" />
+              ) : (
+                <Play size={20} className="fill-white text-white" />
+              )}
+            </button>,
+            document.body
           )}
-        </button>
-      </div>
+      </>
     );
   },
 );

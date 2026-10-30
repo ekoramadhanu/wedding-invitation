@@ -13,7 +13,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { createClient } from "@/lib/supabaseClient";
 
+
 function WeddingPage() {
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const supabase = createClient();
   const searchParams = useSearchParams();
 
@@ -28,17 +31,27 @@ function WeddingPage() {
   const isGuardActive = useRef(false);
 
   const handleOpenInvitation = async () => {
+    try {
+      if (!audioRef.current) {
+        audioRef.current = new Audio(
+          "/music/Glenn_Madeiro_-_Nothing_s_Gonna_Change_My_Love_For_You_(mp3.pm).mp3"
+        );
 
-    await landingPageRef.current?.playMusic();
+        audioRef.current.loop = true;
+        audioRef.current.volume = 0.5;
+      }
+
+      await audioRef.current.play();
+    } catch (error) {
+      console.error("Gagal memainkan musik:", error);
+    }
 
     setIsOpen(true);
 
     isGuardActive.current = true;
 
     window.history.pushState(
-      {
-        weddingInvitation: true,
-      },
+      { weddingInvitation: true },
       "",
       window.location.href
     );
@@ -48,32 +61,39 @@ function WeddingPage() {
     let active = true;
 
     async function checkGuest() {
+      setIsChecking(true);
+
       if (!invitation) {
         setIsGuestFound(false);
         setIsChecking(false);
         return;
       }
 
-      setIsChecking(true);
+      try {
+        const { data, error } = await supabase
+          .from("wedding_mst_invitation")
+          .select("name")
+          .eq("name", invitation)
+          .maybeSingle();
 
-      const { data, error } = await supabase
-        .from("wedding_mst_invitation")
-        .select("name")
-        .eq("name", invitation)
-        .maybeSingle();
-        
-      console.log(data)
-      // console.log(invitation)
-      if (!active) return;
+        console.log(data);
 
-      if (error) {
-        // console.error("Gagal mengecek tamu:", error.message);
-        setIsGuestFound(false);
-      } else {
-        setIsGuestFound(!!data);
+        if (!active) return;
+
+        if (error) {
+          setIsGuestFound(false);
+        } else {
+          setIsGuestFound(data != null);
+        }
+      } catch (error) {
+        if (active) {
+          setIsGuestFound(false);
+        }
+      } finally {
+        if (active) {
+          setIsChecking(false);
+        }
       }
-
-      setIsChecking(false);
     }
 
     checkGuest();
@@ -108,16 +128,38 @@ function WeddingPage() {
   return (
     <>
       <AOSInit />
-      <div className={isOpen ? "hidden" : "block"}>
-        <WeddingCover
-          invitation={invitation}
-          onOpen={handleOpenInvitation}
-        />
-      </div>
+      {isChecking ? (
+        <div className="flex min-h-screen flex-col items-center justify-center gap-5">
+          <div className="relative flex h-20 w-20 items-center justify-center">
+            <div className="absolute h-full w-full animate-spin rounded-full border-4 border-dark-brown border-t-dark-brown" />
 
-      <div className={isOpen ? "block" : "hidden"}>
-        <LandingPage ref={landingPageRef} invitation={invitation} />
-      </div>
+            <span className="animate-pulse text-3xl text-dark-brown">
+              ♥
+            </span>
+          </div>
+
+          <p className="animate-pulse text-sm tracking-widest text-dark-brown">
+            MEMERIKSA UNDANGAN...
+          </p>
+        </div>
+      ) : isGuestFound ? (
+        !isOpen ? (
+          <WeddingCover
+            invitation={invitation}
+            onOpen={handleOpenInvitation}
+          />
+        ) : (
+          <LandingPage
+            ref={landingPageRef}
+            invitation={invitation}
+            audio={audioRef.current}
+          />
+        )
+      ) : (
+        <DataNotfound />
+      )}
+
+
     </>
   );
 }
