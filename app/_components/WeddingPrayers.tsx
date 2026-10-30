@@ -60,6 +60,7 @@ export default function WeddingCouple({
   ];
 
   const [isRsvpModalOpen, setIsRsvpModalOpen] = useState(false);
+
   const [selectedEvents, setSelectedEvents] = useState<string[]>([]);
   const [attendeesCount, setAttendeesCount] = useState<number>(1);
   const [isLoadingUcapan, setIsLoadingUcapan] = useState(false);
@@ -129,17 +130,20 @@ export default function WeddingCouple({
         },
       ]);
 
-      if (error) {
-        alert("Gagal mengirim ucapan: " + error.message);
-      } else {
-        setMessage("");
+
+      if (error == null) {
+        setIsRsvpModalOpen(false);
         fetchUcapan();
-      }
+      } else if (error.message.includes('duplicate key') && error != null) {
+        alert("Gagal mengirim Ucapan karena sudah pernah terkirim");
+      } 
+
     } catch (err) {
       console.error(err);
     } finally {
       // 2. Matikan status loading (baik sukses maupun gagal)
       setIsLoadingUcapan(false);
+      setMessage("");
     }
   };
 
@@ -163,9 +167,12 @@ export default function WeddingCouple({
         },
       ]);
 
-      if (error) {
-        alert("Gagal mengirim ucapan: " + error.message);
-      }
+      if (error == null) {
+        setIsRsvpModalOpen(false);
+      } else if (error.message.includes('duplicate key') && error != null) {
+        alert("Gagal mengirim RSVP karena sudah pernah terkirim");
+      } 
+      
     } catch (err) {
       console.error(err);
     } finally {
@@ -268,13 +275,13 @@ export default function WeddingCouple({
                       {isLoadingUcapan ? (
                         <>
                           {/* animate-spin membuat ikon berputar */}
-                          <span>Mengirim </span>
                           <Loader2 className="h-3 w-3 animate-spin fill-current sm:h-3.5 sm:w-3.5" />
+                          <span>Kirim </span>
                         </>
                       ) : (
                         <>
-                          <span>Kirim </span>
                           <Send className="h-3 w-3 fill-current sm:h-3.5 sm:w-3.5" />
+                          <span>Kirim </span>
                         </>
                       )}
                     </button>
@@ -284,8 +291,20 @@ export default function WeddingCouple({
                       onClick={() => setIsRsvpModalOpen(true)}
                       className="border-muted-brown text-muted-brown hover:bg-muted-brown/5 flex w-full items-center justify-center gap-2 rounded border bg-transparent py-1.5 text-xs font-semibold tracking-wider uppercase transition-colors sm:py-2 sm:text-base"
                     >
-                      <QrCode className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> RSVP /
-                      Kehadiran
+                      
+                      
+                      {isLoadingRSVP ? (
+                        <>
+                          {/* animate-spin membuat ikon berputar */}
+                          <Loader2 className="h-3 w-3 animate-spin fill-current sm:h-3.5 sm:w-3.5" />
+                          <span> RSVP / Kehadiran </span>
+                        </>
+                      ) : (
+                        <>
+                          <QrCode className="h-3 w-3 sm:h-3.5 sm:w-3.5" /> 
+                          <span> RSVP / Kehadiran </span>
+                        </>
+                      )}
                     </button>
 
                     <button
@@ -403,17 +422,12 @@ export default function WeddingCouple({
                 PENGIRIMAN HADIAH
               </h3>
               <div className="mt-3 rounded-xl border border-gray-100 bg-[#f8f6f6] p-4 text-left">
-                <h4 className="font-sans text-sm font-bold text-gray-800 sm:text-base">
-                  Kediaman Mempelai Wanita
-                </h4>
                 <p className="mt-1 font-sans text-xs leading-relaxed text-gray-600 sm:text-sm">
-                  Kandang Utara Rt.02/RW.07 <br />
-                  Ds. Olehan Kec. Situbondo. Kab. Situbondo, Jawa Timur <br />
-                  Indonesia
+                  Bagi tamu undangan yang ingin mengirimkan kado atau hadiah, silakan konfirmasi terlebih dahulu kepada mempelai.
                 </p>
 
                 {/* Action Buttons Alamat */}
-                <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                {/* <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                   <button
                     onClick={() =>
                       handleCopy(
@@ -442,7 +456,7 @@ export default function WeddingCouple({
                   >
                     <MapPin className="h-3.5 w-3.5 text-gray-700" /> OPEN MAPS
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -529,6 +543,7 @@ export default function WeddingCouple({
           </div>
         </div>
       )}
+
     </section>
   );
 }
